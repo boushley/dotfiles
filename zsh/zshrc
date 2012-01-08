@@ -1,3 +1,7 @@
+# Include other configuration
+source ~/.dotfiles/zsh/aliases
+source ~/.dotfiles/zsh/zsh_aliases
+
 # Use vim style editing
 bindkey -v
 
