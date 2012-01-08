@@ -1,0 +1,31 @@
+# Use vim style editing
+bindkey -v
+
+# Configure the history file location and sizes
+HISTFILE=~/.histfile
+HISTSIZE=2000
+SAVEHIST=2000
+
+# Automatically change to directory if you just type directory name
+setopt autocd
+
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _complete _ignored _approximate
+zstyle ':completion:*' file-sort name
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' ignore-parents parent pwd
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-suffixes true
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**'
+zstyle ':completion:*' max-errors 2
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' preserve-prefix '//[^/]##/'
+zstyle ':completion:*' prompt 'Found %e Errors'
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle :compinstall filename '/Users/boushley/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
