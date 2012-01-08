@@ -1,0 +1,14 @@
+[user]
+	name = Aaron Boushley
+	email = aaron@zaalabs.com
+[color]
+	diff = auto
+	status = auto
+	merge = auto
+	ui = true
+[alias]
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+[core]
+	autocrlf = input
+	safecrlf = warn
+	excludesfile = /Users/boushley/.gitignore_global
