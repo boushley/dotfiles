@@ -13,6 +13,9 @@ SAVEHIST=2000
 # Automatically change to directory if you just type directory name
 setopt autocd
 
+# Add macports to the path
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _complete _ignored _approximate
