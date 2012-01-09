@@ -1,31 +1,67 @@
-" Aaron's vimrc
-" Started with Jay's vimrc as a base
-" Most taken from others on the internet
-" Date: Fri Feb 20 2009
-"
-" Notes/Tips:
-" - Here a discovery I made today when you have multiple buffers open try
-" Ctrl-Shift-` (or Ctrl-~ however you want to think about it). I don't totally
-" understand it yet, but it's neat. It may be some quick alternate file switch.
+" No backwards compatibility with vi
+" KEEP THIS FIRST, IT HAS SIDE EFFECTS ON OTHER SETTINGS
+set nocompatible 
 
-" set the windows size
-"set lines=44
-"set columns=101
-
+" Setup Some of the look
+set guifont=Monaco:h12 " Set the font
 set title " Makes titlestring change the window title.
 set noicon " See the help.
-set history=50 " Lines of command line history to keep.
-set autowrite " Automatically save modifications to files when you use critical commands.
-set nobackup " Backups are for wimps ;-)
-set nowritebackup " Before writing file make a backup.
-"set confirm " Confirm quit and other operations if file has changed (no need for !)
+colorscheme wombat
 
-set backspace=2 " Same as :set backspace=indent,eol,start
-set nocompatible " No backwards compatibility with vi
-set digraph " Required for those umlauts.
+" Setup Indentation
+set autoindent " When adding a new line indent it like the current line or use smartindent
+set smartindent " For c like syntax do indenting
+set shiftwidth=4 " Number of spaces to use for each insertion of (auto)indent.
+set tabstop=4 " What <Tab> is worth in spaces.
+set softtabstop=4 " Feel like tabs, but they're really spaces.
+set expandtab " Changes tabs to spaces when on.
+
+set foldmethod=indent " turn on folding
+
+" Don't need to turn off backups, just don't put all of the filesystem
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+
+" Save undo history across sessions, only works in GUI
+if has('gui_running')
+  set undodir=~/.vim/backups
+  set undofile
+endif
+
+" Searching Options
+set hlsearch "set noh " Highlight matches when searching.
+set incsearch "set noincsearch " Start searching right away.
+set ignorecase " Ignore the case in search patterns.
+set smartcase " If the first letter if capitalized search is case sensitive.
+
+" Scroll the viewport a bit faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
+" Take care of some bells
 set noerrorbells " No more beep! ;-)
 set visualbell t_vb= " Terminal's visual bell - turned off to make Vim quiet!
+
+" The following always keep a bit of context on the screen around the cursor.
+set scrolljump=1 " When scrolling this is how many lines to jump.
+set scrolloff=3 " This is how many lines to keep above or below cursor.
+set sidescroll=1 " Same as scrolljump but for the horizontal
+set sidescrolloff=6 " Same as above but for horizontal.
+" sidescrolloff test garbage: asldkfj;alskjdfffffIfffffffffffffffffffffffffffffffffffffffffffffffffffal;skdjf;lkasjdfl;kjal;skdfffffffffffffalksdjf;lkasjdffffffffffffffffl;aksjdf
+
+set hidden " Handle buffers in a more expected manner
+set history=1000 " Lines of command line history to keep.
+set wildmenu " Way cool completion in command line mode
+set wildmode=list:longest " Make command line completion function like the shell, prompting completion
+set backspace=indent,eol,start " Makes backspace function normally in insert mode
 set esckeys " esckeys: allow usage of cursor keys within insert mode
+set helpheight=0 " Zero disables helpheight (see the help section).
+set textwidth=90 " Max width of text being entered.
+set laststatus=2 " Show status line always!
+set lazyredraw " Do not update screen while executing macros.
+set ruler " Show cursor position?  Yep!
+set shell=zsh
+
 set formatoptions=cqrow " Options for the "text format" command ("gq")
 " c - format comments
 " q - format comments with gq
@@ -36,46 +72,6 @@ set formatoptions=cqrow " Options for the "text format" command ("gq")
 " n - recognize numbered lists"+
 " w - trailing whitespace means paragraph continues
 " 2 - use second line of paragraph for formatting
-
-set textwidth=90 " Max width of text being entered.
-set helpheight=0 " Zero disables helpheight (see the help section).
-
-set hlsearch "set noh " Highlight matches when searching.
-set incsearch "set noincsearch " Start searching right away.
-set ignorecase " Ignore the case in search patterns.
-set smartcase " If the first letter if capitalized search is case sensitive.
-set laststatus=2 " Show status line always!
-set lazyredraw " Do not update screen while executing macros.
-set ruler " Show cursor position?  Yep!
-
-" The following always keep a bit of context on the screen around the cursor.
-set scrolljump=1 " When scrolling this is how many lines to jump.
-set scrolloff=3 " This is how many lines to keep above or below cursor.
-set sidescroll=1 " Same as scrolljump but for the horizontal
-set sidescrolloff=6 " Same as above but for horizontal.
-" sidescrolloff test garbage: asldkfj;alskjdfffffIfffffffffffffffffffffffffffffffffffffffffffffffffffal;skdjf;lkasjdfl;kjal;skdfffffffffffffalksdjf;lkasjdffffffffffffffffl;aksjdf
-
-set clipboard=autoselect " Copy text to clipboard in visual mode
-set wildmenu " Way cool completion in command line mode
-set wildmode=full " This is the default
-
-" Shell to use for :!
-"if has("unix")
-"set shell=bash
-"elseif has("win32")
-"set shell=cmd.exe
-"endif
-
-" These are a personal choice
-set autoindent
-set smartindent
-set shiftwidth=4 " Number of spaces to use for each insertion of (auto)indent.
-set tabstop=4 " What <Tab> is worth in spaces.
-set softtabstop=4 " Feel like tabs, but they're really spaces.
-"set expandtab " Changes tabs to spaces when on.
-set foldmethod=indent " turn on folding
-set guifont=Lucida_Console:h10:cDEFAULT
-colorscheme wombat
 
 " when list is on show whitespace characters like follows
 set listchars=tab:>-,trail:-,eol:$,extends:>,precedes:<
@@ -125,23 +121,6 @@ map + <C-W>+
 " makes window smaller
 map - <C-W>-
 
-" ===============================================================
-" Abbreviations
-" ===============================================================
-
-" grab the date/time.. output looks like :
-" Fri Nov 10 03:18:44 MST 2000 
-iab YDT <C-R>=strftime("%a %b %d %Y")<CR>
-imap <C-D> <C-R>=strftime("%a %b %d %T %Z %Y")<CR>
-
-" ===================================================================
-" Plugins
-" ===================================================================
-
-" Just move it to the plugin directory instead
-" source $VIMRUNTIME/macros/matchit.vim
-let snippetsEmu_key = "<F4>"
-
 " ===================================================================
 " MAPpings
 " ===================================================================
@@ -152,9 +131,6 @@ if has("unix")
 elseif has("win32")
 	nmap <F12> :source ~/_vimrc<CR>
 endif
-
-" Make Y behave like C and D
-nmap Y y$
 
 " Paste at current tab level (doesn't work that great)
 "nmap p ]p
@@ -181,14 +157,8 @@ map <F10> :let @"=@+<CR>
 " NERDTree toggle
 map <F2> :NERDTreeToggle<CR>
 
-" Stop \n at end of file
-autocmd FileType php setlocal noeol binary
-
 " ';;' inserts a ';' at the end of the line (';' is a problem with 'for(;;)')
-"inoremap ;; <Esc>A;
-
-" I don't use ; in normal mode so here it puts a ; at the end of the line
-"noremap ; mzA;<Esc>`z
+inoremap ;; <Esc>A;
 
 " The following avoid jumping over wrapped lines
 imap <Down> <C-O>gj
@@ -236,91 +206,6 @@ function! ClosePair(char)
 		return a:char
 	endif
 endf
-
-
-
-" =================================================================== 
-" SESSION STuff
-" ===================================================================
-" don't store any options in sessions
-if version >= 700
-	" localoptions has to be here:
-	" for some reason, new session loading code fails to set filetype of files in session
-  set sessionoptions=blank,tabpages,folds,localoptions,curdir,resize,winsize,winpos
-endif
-
-command! -nargs=1 Project :call LoadProject('<args>')
-command! -nargs=+ SaveProject :call SaveProject('<args>')
-
-let s:projectloaded = 0
-let s:loadingproject = 0
-let s:projectname = ''
-
-function! LoadProject(name)
-
-	let s:projectloaded = 1
-	let s:projectname = a:name
-	exe "source ~/vimfiles/projects/".a:name.".vim"
-	exe "rviminfo! ~/vimfiles/projects/".a:name.".viminfo"
-
-endfunction
-
-function! SaveProject(name)
-
-	if a:name ==# ''
-		if s:projectloaded == 1
-			let pname = s:projectname
-		endif
-	else
-		let pname = a:name
-	endif
-
-	if pname !=# ''
-		let s:projectloaded = 0
-		let s:projectname = ''
-		exe "mksession! ~\\vimfiles\\projects\\".pname.".vim"
-		exe "wviminfo! ~\\vimfiles\\projects\\".pname.".viminfo"
-	endif
-
-endfunction
-
-autocmd VimLeave * call SaveProject()
-
-
- 
-"let s:sessionloaded = 0
-"let s:loadingsession = 0
-"let s:sessionfile = ''
-"let s:netrwsort = ''
-"autocmd BufRead *.vim call LoadSessionFinish()
-"function LoadSession()
-"	" save current netrw sort sequence
-"	let s:netrwsort = g:netrw_sort_sequence
-"	" show sessions first, then dirs
-"	let g:netrw_sort_sequence = '\.vim$,[\/]$'
-"	let s:loadingsession = 1
-"	e .
-"endfunction
-"function LoadSessionFinish()
-"	if s:loadingsession == 1
-"		let s:loadingsession = 0
-"		let s:sessionloaded = 1
-"		" restore previous sort sequence setting
-"		let g:netrw_sort_sequence = s:netrwsort
-"		" save session filename for saving on exit
-"		let s:sessionfile = bufname('%')
-"		source %
-"	end
-"endfunction
-"function SaveSession()
-"  if s:sessionloaded == 1
-"		let s:sessionloaded = 0
-"		" re-save session before exiting
-"    exe "mksession! ".s:sessionfile
-"  end
-"endfunction
-"autocmd VimLeave * call SaveSession()
-
 
 
 " =================================================================== 
