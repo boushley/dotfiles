@@ -56,7 +56,7 @@ set wildmode=list:longest " Make command line completion function like the shell
 set backspace=indent,eol,start " Makes backspace function normally in insert mode
 set esckeys " esckeys: allow usage of cursor keys within insert mode
 set helpheight=0 " Zero disables helpheight (see the help section).
-set textwidth=90 " Max width of text being entered.
+set textwidth=120 " Max width of text being entered.
 set laststatus=2 " Show status line always!
 set lazyredraw " Do not update screen while executing macros.
 set ruler " Show cursor position?  Yep!
