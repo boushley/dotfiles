@@ -34,7 +34,7 @@ plugins=(git osx macports)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 
 # Load my ZSH Config
 source ~/.dotfiles/zsh/zshrc
