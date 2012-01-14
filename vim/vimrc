@@ -15,8 +15,11 @@ set shiftwidth=4 " Number of spaces to use for each insertion of (auto)indent.
 set tabstop=4 " What <Tab> is worth in spaces.
 set softtabstop=4 " Feel like tabs, but they're really spaces.
 set expandtab " Changes tabs to spaces when on.
-
 set foldmethod=indent " turn on folding
+
+" Turn on Pathogen for good plugin support
+call pathogen#infect()
+call pathogen#helptags()
 
 " Don't need to turn off backups, just don't put all of the filesystem
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
