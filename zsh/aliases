@@ -25,7 +25,7 @@ alias ar='source ~/.dotfiles/zsh/aliases'  #alias reload
 alias ve='vim ~/.vimrc'
 
 # zsh profile editing
-alias ze='vim ~/.zshrc'
+alias ze='vim ~/.dotfiles/zsh/zshrc'
 alias zr='source ~/.zshrc'
 
 # Git Aliases

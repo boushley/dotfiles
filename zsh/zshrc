@@ -5,6 +5,9 @@ source ~/.dotfiles/zsh/zsh_aliases
 # Use vim style editing
 bindkey -v
 
+# Define the editor for some commands
+export EDITOR="/usr/bin/vim"
+
 # Configure the history file location and sizes
 HISTFILE=~/.histfile
 HISTSIZE=2000
