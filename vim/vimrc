@@ -2,11 +2,17 @@
 " KEEP THIS FIRST, IT HAS SIDE EFFECTS ON OTHER SETTINGS
 set nocompatible 
 
+" Turn on Pathogen for good plugin support
+call pathogen#infect()
+call pathogen#helptags()
+
 " Setup Some of the look
 set guifont=Monaco:h12 " Set the font
 set title " Makes titlestring change the window title.
 set noicon " See the help.
-colorscheme wombat
+colorscheme solarized
+set background=dark
+syntax enable
 
 " Setup Indentation
 set autoindent " When adding a new line indent it like the current line or use smartindent
@@ -16,10 +22,6 @@ set tabstop=4 " What <Tab> is worth in spaces.
 set softtabstop=4 " Feel like tabs, but they're really spaces.
 set expandtab " Changes tabs to spaces when on.
 set foldmethod=indent " turn on folding
-
-" Turn on Pathogen for good plugin support
-call pathogen#infect()
-call pathogen#helptags()
 
 " Don't need to turn off backups, just don't put all of the filesystem
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -215,30 +217,7 @@ endf
 " AutoCommands
 " ===================================================================
 
-" Autocommands are the key to "syntax coloring".
-" There's one command in your vimrc that should
-" load/source the file $VIM/syntax/syntax.vim
-" which contains the definition for colors and
-" the autocommands that load other syntax files
-" when necessary, ie when the filename matches
-" a given pattern, eg "*.c" or *".html".
-"
-" just load the main syntax file when Vim was compiled with "+syntax"
-if has("syntax")
-	" The following sources the main syntax file,
-	" ie. "$VIM/syntax/syntax.vim", see ":help :syn-on":
-	syntax on
-	" Redefine the color for "Comment":
-	" hi! Comment  term=bold  ctermfg=cyan  guifg=red
-
-	" The standard background color for the GUI Vim is "blue".
-	" No, I don't know why.  But many users want to change this
-	" color to black so they can read the blue colored text.  ;-)
-	" Here's how:
-	" :hi Normal guibg=white guifg=black
-endif
-
-autocmd FileType text set formatoptions+=t | set textwidth=78
+autocmd FileType text set formatoptions+=t | set textwidth=120
 
 " autocmd BufEnter * let &titlestring = hostname() . " - " . expand ("%:~:p")
 autocmd BufEnter * let &titlestring = expand ("%:t")
