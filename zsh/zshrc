@@ -16,14 +16,14 @@ SAVEHIST=2000
 # Automatically change to directory if you just type directory name
 setopt autocd
 
+# Load RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+
 # Add macports to the path
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
 # Add jsctags to the Node Path
 export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
-
-# Load RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 
 # The following lines were added by compinstall
 
