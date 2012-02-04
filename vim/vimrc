@@ -58,6 +58,7 @@ set hidden " Handle buffers in a more expected manner
 set history=1000 " Lines of command line history to keep.
 set wildmenu " Way cool completion in command line mode
 set wildmode=list:longest " Make command line completion function like the shell, prompting completion
+set completeopt=menuone,longest " Make insert mode completion only insert the longest substring
 set backspace=indent,eol,start " Makes backspace function normally in insert mode
 set esckeys " esckeys: allow usage of cursor keys within insert mode
 set helpheight=0 " Zero disables helpheight (see the help section).
@@ -169,6 +170,9 @@ map <F10> :let @"=@+<CR>
 
 " NERDTree toggle
 map <F2> :NERDTreeToggle<CR>
+
+" Supertab Settings
+let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
 
 " ';;' inserts a ';' at the end of the line (';' is a problem with 'for(;;)')
 inoremap ;; <Esc>A;
