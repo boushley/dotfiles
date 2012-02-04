@@ -172,7 +172,22 @@ map <F10> :let @"=@+<CR>
 map <F2> :NERDTreeToggle<CR>
 
 " Supertab Settings
-let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
+let g:SuperTabDefaultCompletionType = "<c-p>"
+map <F5> :call ToggleDefaultSupertabType()<CR>
+imap <F5> <C-O>:call ToggleDefaultSupertabType()<CR>
+function! ToggleDefaultSupertabType()
+    if g:SuperTabDefaultCompletionType == "<c-x><c-u>"
+        :call SuperTabSetCompletionType("<c-p>")
+        :call SuperTabSetDefaultCompletionType("<c-p>")
+        let g:SuperTabDefaultCompletionType = "<c-p>"
+        echo "Set SuperTab to c-p"
+    else
+        :call SuperTabSetCompletionType("<c-x><c-u>")
+        :call SuperTabSetDefaultCompletionType("<c-x><c-u>")
+        let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
+        echo "Set SuperTab to c-x c-u"
+    endif
+endfunction
 
 " ';;' inserts a ';' at the end of the line (';' is a problem with 'for(;;)')
 inoremap ;; <Esc>A;
