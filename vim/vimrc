@@ -13,6 +13,7 @@ set noicon " See the help.
 colorscheme solarized
 set background=dark
 syntax enable
+set guioptions-=T " Remove the gui toolbar
 
 " Setup Indentation
 set autoindent " When adding a new line indent it like the current line or use smartindent
@@ -22,6 +23,10 @@ set tabstop=4 " What <Tab> is worth in spaces.
 set softtabstop=4 " Feel like tabs, but they're really spaces.
 set expandtab " Changes tabs to spaces when on.
 set foldmethod=indent " turn on folding
+
+" Setup Per Directory vimrc files
+set exrc " enable vimrc files per directory
+set secure " Disable unsafe commands in per directory .vimrc files
 
 " Don't need to turn off backups, just don't put all of the filesystem
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp

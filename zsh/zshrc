@@ -19,11 +19,14 @@ setopt autocd
 # Load RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 
-# Add macports to the path
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Add macports to the path and android adb
+export PATH=/opt/local/bin:/opt/local/sbin:/sdks/android/platform-tools:$PATH
 
 # Add jsctags to the Node Path
 export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
+
+# Use default python environment
+source /sdks/python/standard_environment/bin/activate
 
 # The following lines were added by compinstall
 
@@ -35,7 +38,7 @@ zstyle ':completion:*' ignore-parents parent pwd
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-suffixes true
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**'
-zstyle ':completion:*' max-errors 2
+zstyle ':completion:*' max-errors 1
 zstyle ':completion:*' menu select=long
 zstyle ':completion:*' preserve-prefix '//[^/]##/'
 zstyle ':completion:*' prompt 'Found %e Errors'
