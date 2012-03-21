@@ -24,6 +24,9 @@ alias ar='source ~/.dotfiles/zsh/aliases'  #alias reload
 # vimrc editing
 alias ve='vim ~/.vimrc'
 
+# edit todos
+alias todo='mvim ~/Dropbox/documents/aaron/todos/todo.txt'
+
 # zsh profile editing
 alias ze='vim ~/.dotfiles/zsh/zshrc'
 alias zr='source ~/.zshrc'

@@ -22,6 +22,9 @@ setopt autocd
 # Add macports to the path and android adb
 export PATH=/opt/local/bin:/opt/local/sbin:/sdks/android/platform-tools:$PATH
 
+# Setup a basic Node Path
+export NODE_PATH=/opt/local/lib/node
+
 # Add jsctags to the Node Path
 export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
 
