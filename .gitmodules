@@ -28,9 +28,6 @@
 [submodule "vim/vim/bundle/vim-surround"]
 	path = vim/vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "vim/vim/bundle/vim-task"]
-	path = vim/vim/bundle/vim-task
-	url = https://github.com/samsonw/vim-task.git
 [submodule "vim/vim/bundle/vim-todo-txt"]
 	path = vim/vim/bundle/vim-todo-txt
 	url = https://github.com/davidoc/todo.txt-vim.git
