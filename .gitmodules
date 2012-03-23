@@ -30,4 +30,4 @@
 	url = https://github.com/tpope/vim-surround.git
 [submodule "vim/vim/bundle/vim-todo-txt"]
 	path = vim/vim/bundle/vim-todo-txt
-	url = https://github.com/davidoc/todo.txt-vim.git
+	url = git@github.com:boushley/todo.txt-vim.git
