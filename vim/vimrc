@@ -32,13 +32,16 @@ set secure " Disable unsafe commands in per directory .vimrc files
 let g:notes_directory = '~/Dropbox/documents/aaron/vim-notes'
 let g:notes_suffix = '.txt'
 
+" Setup leader key
+let mapleader = ","
+
 " Setup vim-task bindings
 inoremap <silent> <buffer> <C-D-CR> <ESC>:call Toggle_task_status()<CR>i
 noremap <silent> <buffer> <C-D-CR> :call Toggle_task_status()<CR>i
 
-" Don't need to turn off backups, just don't put all of the filesystem
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+" Don't need to turn off backups, just don't put them all over the filesystem
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp,C:\tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp,C:\tmp
 
 " Save undo history across sessions, only works in GUI
 if has('gui_running')
