@@ -1,33 +1,33 @@
-[submodule "vim/vim/bundle/nerdtree"]
-	path = vim/vim/bundle/nerdtree
+[submodule "vim/vim/bundle-available/nerdtree"]
+	path = vim/vim/bundle-available/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule "vim/vim/bundle/supertab"]
-	path = vim/vim/bundle/supertab
+[submodule "vim/vim/bundle-available/supertab"]
+	path = vim/vim/bundle-available/supertab
 	url = https://github.com/tsaleh/vim-supertab.git
-[submodule "vim/vim/bundle/vim-colors-solarized"]
-	path = vim/vim/bundle/vim-colors-solarized
+[submodule "vim/vim/bundle-available/vim-colors-solarized"]
+	path = vim/vim/bundle-available/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "vim/vim/bundle/vim-commentary"]
-	path = vim/vim/bundle/vim-commentary
+[submodule "vim/vim/bundle-available/vim-commentary"]
+	path = vim/vim/bundle-available/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
-[submodule "vim/vim/bundle/vim-easymotion"]
-	path = vim/vim/bundle/vim-easymotion
+[submodule "vim/vim/bundle-available/vim-easymotion"]
+	path = vim/vim/bundle-available/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
-[submodule "vim/vim/bundle/vim-matchit"]
-	path = vim/vim/bundle/vim-matchit
+[submodule "vim/vim/bundle-available/vim-matchit"]
+	path = vim/vim/bundle-available/vim-matchit
 	url = https://github.com/vim-scripts/matchit.zip.git
-[submodule "vim/vim/bundle/vim-notes"]
-	path = vim/vim/bundle/vim-notes
+[submodule "vim/vim/bundle-available/vim-notes"]
+	path = vim/vim/bundle-available/vim-notes
 	url = https://github.com/xolox/vim-notes.git
-[submodule "vim/vim/bundle/vim-repeat"]
-	path = vim/vim/bundle/vim-repeat
+[submodule "vim/vim/bundle-available/vim-repeat"]
+	path = vim/vim/bundle-available/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/vim/bundle/vim-space"]
-	path = vim/vim/bundle/vim-space
+[submodule "vim/vim/bundle-available/vim-space"]
+	path = vim/vim/bundle-available/vim-space
 	url = https://github.com/spiiph/vim-space.git
-[submodule "vim/vim/bundle/vim-surround"]
-	path = vim/vim/bundle/vim-surround
+[submodule "vim/vim/bundle-available/vim-surround"]
+	path = vim/vim/bundle-available/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "vim/vim/bundle/vim-todo-txt"]
-	path = vim/vim/bundle/vim-todo-txt
+[submodule "vim/vim/bundle-available/vim-todo-txt"]
+	path = vim/vim/bundle-available/vim-todo-txt
 	url = git@github.com:boushley/todo.txt-vim.git
