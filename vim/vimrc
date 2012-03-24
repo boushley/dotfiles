@@ -32,8 +32,11 @@ set secure " Disable unsafe commands in per directory .vimrc files
 let g:notes_directory = '~/Dropbox/documents/aaron/vim-notes'
 let g:notes_suffix = '.txt'
 
-" Setup leader key
-let mapleader = ","
+" Setup some keybindings
+let mapleader = "," " Setup leader key
+" When dealing with marks ` is more useful than ', so make the better one easier to reach
+nnoremap ' `
+nnoremap ` '
 
 " Setup vim-task bindings
 inoremap <silent> <buffer> <C-D-CR> <ESC>:call Toggle_task_status()<CR>i
