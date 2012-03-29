@@ -5,6 +5,9 @@ source ~/.dotfiles/zsh/zsh_aliases
 # Use vim style editing
 bindkey -v
 
+# Allow ctrl+r for searching through command history
+bindkey "^R" history-incremental-search-backward
+
 # Define the editor for some commands
 export EDITOR="/usr/bin/vim"
 
