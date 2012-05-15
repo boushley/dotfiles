@@ -16,6 +16,9 @@ HISTFILE=~/.histfile
 HISTSIZE=2000
 SAVEHIST=2000
 
+# Fixes a problem where git diff with color doesn't show colors
+export LESS=-R 
+
 # Automatically change to directory if you just type directory name
 setopt autocd
 
@@ -34,10 +37,16 @@ export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
 # Use default python environment
 source /sdks/python/standard_environment/bin/activate
 
+# Add hosts from knownhosts to completion
+local knownhosts
+knownhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
+zstyle ':completion:*:(ssh|scp|sftp):*' hosts $knownhosts
+
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _complete _ignored _approximate
 zstyle ':completion:*' file-sort name
+zstyle ':completion:*' hosts off
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' ignore-parents parent pwd
