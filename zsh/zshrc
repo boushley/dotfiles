@@ -26,7 +26,7 @@ setopt autocd
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 
 # Add macports to the path and android adb
-export PATH=/opt/local/bin:/opt/local/sbin:/sdks/android/platform-tools:/sdks/play/play-latest:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:/sdks/android/platform-tools:/sdks/android/tools:/sdks/play/play-latest:$PATH
 
 # Setup a basic Node Path
 export NODE_PATH=/opt/local/lib/node

@@ -95,6 +95,7 @@ alias gz='tar -zcvf'
 # Ruby
 alias c='script/console --irb=pry'
 alias ms='mongrel_rails start'
+alias be='bundle exec'
 
 # Vim/ctags "mctags = make ctags", using the ruby specific version
 # to save some time
