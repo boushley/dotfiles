@@ -3,6 +3,6 @@
 inoremap <C-a> <Insert><C-a><Insert>
 noremap <C-S-B> :set<Space>gui=invbookmarks<Return>
 set hintchars=abcdefghijklmnprstwxyz
-source! /home/boushley/.vimperatorrc.local
+source! /Users/boushley/.vimperatorrc.local
 
 " vim: set ft=vimperator:

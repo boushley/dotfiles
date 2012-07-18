@@ -11,4 +11,4 @@
 [core]
 	autocrlf = input
 	safecrlf = warn
-	excludesfile = /Users/boushley/.gitignore_global
+	excludesfile = ~/.gitignore_global
