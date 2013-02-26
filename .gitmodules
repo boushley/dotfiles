@@ -34,3 +34,6 @@
 [submodule "vim/vim/bundle-available/ctrlp"]
 	path = vim/vim/bundle-available/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
+[submodule "vim/vim/bundle-available/vim-powerline"]
+	path = vim/vim/bundle-available/vim-powerline
+	url = https://github.com/Lokaltog/vim-powerline.git
