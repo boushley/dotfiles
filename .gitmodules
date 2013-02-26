@@ -31,6 +31,3 @@
 [submodule "vim/vim/bundle-available/vim-todo-txt"]
 	path = vim/vim/bundle-available/vim-todo-txt
 	url = git@github.com:boushley/todo.txt-vim.git
-[submodule "vim/vim/bundle-available/command-t"]
-	path = vim/vim/bundle-available/command-t
-	url = git://git.wincent.com/command-t.git
