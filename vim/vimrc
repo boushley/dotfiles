@@ -18,9 +18,9 @@ set guioptions-=T " Remove the gui toolbar
 " Setup Indentation
 set autoindent " When adding a new line indent it like the current line or use smartindent
 set smartindent " For c like syntax do indenting
-set shiftwidth=4 " Number of spaces to use for each insertion of (auto)indent.
-set tabstop=4 " What <Tab> is worth in spaces.
-set softtabstop=4 " Feel like tabs, but they're really spaces.
+set shiftwidth=2 " Number of spaces to use for each insertion of (auto)indent.
+set tabstop=2 " What <Tab> is worth in spaces.
+set softtabstop=2 " Feel like tabs, but they're really spaces.
 set expandtab " Changes tabs to spaces when on.
 set foldmethod=indent " turn on folding
 
@@ -257,6 +257,12 @@ function! ClosePair(char)
 		return a:char
 	endif
 endf
+
+" pretty-print JSON files
+autocmd BufRead,BufNewFile *.json set filetype=json
+autocmd Syntax json sou ~/.vim/syntax/json.vim
+" json_reformat is part of yajl: http://lloyd.github.com/yajl/
+autocmd FileType json set equalprg=json_reformat
 
 
 " =================================================================== 
