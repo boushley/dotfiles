@@ -11,6 +11,13 @@ bindkey "^R" history-incremental-search-backward
 # Define the editor for some commands
 export EDITOR="/usr/bin/vim"
 
+# Setup cert file
+export SSL_CERT_FILE=/opt/local/etc/openssl/cert.pem
+
+# Setup identities
+ssh-add ~/.ssh/WardPair.pem
+ssh-add ~/.ssh/us-west-1.pem
+
 # Configure the history file location and sizes
 HISTFILE=~/.histfile
 HISTSIZE=2000
@@ -22,11 +29,10 @@ export LESS=-R
 # Automatically change to directory if you just type directory name
 setopt autocd
 
-# Load RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+export RPROMPT=%~%
 
 # Add macports to the path and android adb
-export PATH=/opt/local/bin:/opt/local/sbin:/sdks/android/platform-tools:/sdks/android/tools:/sdks/play/play-latest:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:/sdks/android/platform-tools:/sdks/android/tools:/sdks/play/current:$PATH
 
 # Setup a basic Node Path
 export NODE_PATH=/opt/local/lib/node
@@ -63,3 +69,6 @@ zstyle :compinstall filename '/Users/boushley/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+# Load RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
