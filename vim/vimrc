@@ -38,6 +38,10 @@ let mapleader = "," " Setup leader key
 nnoremap ' `
 nnoremap ` '
 
+" location-list navigation
+nnoremap <leader>n :lnext<CR>
+nnoremap <leader>p :lprev<CR>
+
 " Setup vim-task bindings
 inoremap <silent> <buffer> <C-D-CR> <ESC>:call Toggle_task_status()<CR>i
 noremap <silent> <buffer> <C-D-CR> :call Toggle_task_status()<CR>i
@@ -55,6 +59,7 @@ endif
 " Setup Ctrl+p ctrlp
 set runtimepath^=~/.vim/bundle/ctrlp
 let g:ctrlp_map = '<Leader>t'
+nnoremap <leader>b :CtrlPBuffer<CR>
 " COPIED... SHOULD INVESTIGATE FURTHER
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_match_window_reversed = 1
@@ -157,6 +162,12 @@ map _ <C-W>_
 map + <C-W>+
 " makes window smaller
 map - <C-W>-
+
+" Change the tabstop size
+nmap <leader>s :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
+nmap <leader>S :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
+nmap <leader>m :set expandtab tabstop=8 shiftwidth=8 softtabstop=4<CR>
+nmap <leader>M :set noexpandtab tabstop=8 softtabstop=4 shiftwidth=4<CR>
 
 " tab navigation like firefox
 nmap <C-S-tab> :tabprevious<CR>
