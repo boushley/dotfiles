@@ -24,6 +24,12 @@ set softtabstop=2 " Feel like tabs, but they're really spaces.
 set expandtab " Changes tabs to spaces when on.
 set foldmethod=indent " turn on folding
 
+" Change the tabstop size
+nmap <leader>s :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
+nmap <leader>S :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
+nmap <leader>m :set expandtab tabstop=8 shiftwidth=8 softtabstop=4<CR>
+nmap <leader>M :set noexpandtab tabstop=8 softtabstop=4 shiftwidth=4<CR>
+
 " Setup Per Directory vimrc files
 set exrc " enable vimrc files per directory
 set secure " Disable unsafe commands in per directory .vimrc files
@@ -162,12 +168,6 @@ map _ <C-W>_
 map + <C-W>+
 " makes window smaller
 map - <C-W>-
-
-" Change the tabstop size
-nmap <leader>s :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
-nmap <leader>S :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
-nmap <leader>m :set expandtab tabstop=8 shiftwidth=8 softtabstop=4<CR>
-nmap <leader>M :set noexpandtab tabstop=8 softtabstop=4 shiftwidth=4<CR>
 
 " tab navigation like firefox
 nmap <C-S-h> :tabprevious<CR>
