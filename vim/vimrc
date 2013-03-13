@@ -170,12 +170,10 @@ map + <C-W>+
 map - <C-W>-
 
 " tab navigation like firefox
-nmap <C-S-h> :tabprevious<CR>
-nmap <C-S-l> :tabnext<CR>
-map <C-S-h> :tabprevious<CR>
-map <C-S-l> :tabnext<CR>
-imap <C-S-h> <Esc>:tabprevious<CR>i
-imap <C-S-l> <Esc>:tabnext<CR>i
+nmap th :tabprevious<CR>
+nmap tl :tabnext<CR>
+map th :tabprevious<CR>
+map tl :tabnext<CR>
 
 " ===================================================================
 " MAPpings
