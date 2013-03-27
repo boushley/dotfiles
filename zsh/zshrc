@@ -2,6 +2,9 @@
 source ~/.dotfiles/zsh/aliases
 source ~/.dotfiles/zsh/zsh_aliases
 
+# Include boxen setup
+source /opt/boxen/env.sh
+
 # Use vim style editing
 bindkey -v
 
@@ -40,8 +43,9 @@ export NODE_PATH=/opt/local/lib/node
 # Add jsctags to the Node Path
 export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
 
-# Use default python environment
-source /sdks/python/standard_environment/bin/activate
+# Setup nvm for use with boxen
+source /opt/boxen/nvm/nvm.sh
+nvm use v0.8
 
 # Add hosts from knownhosts to completion
 local knownhosts
@@ -69,6 +73,3 @@ zstyle :compinstall filename '/Users/boushley/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-
-# Load RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
