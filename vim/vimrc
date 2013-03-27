@@ -2,6 +2,9 @@
 " KEEP THIS FIRST, IT HAS SIDE EFFECTS ON OTHER SETTINGS
 set nocompatible 
 
+" Setup some keybindings
+let mapleader = "," " Setup leader key
+
 " Turn on Pathogen for good plugin support
 call pathogen#infect()
 call pathogen#helptags()
@@ -38,8 +41,6 @@ set secure " Disable unsafe commands in per directory .vimrc files
 let g:notes_directory = '~/Dropbox/documents/aaron/vim-notes'
 let g:notes_suffix = '.txt'
 
-" Setup some keybindings
-let mapleader = "," " Setup leader key
 " When dealing with marks ` is more useful than ', so make the better one easier to reach
 nnoremap ' `
 nnoremap ` '
