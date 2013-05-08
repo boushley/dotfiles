@@ -32,6 +32,7 @@ alias zr='source ~/.zshrc'
 
 # Git Aliases
 alias go='git checkout'
+alias go.='git checkout .'
 alias gc='git commit'
 alias gs='git status'
 alias gstsh='git stash'

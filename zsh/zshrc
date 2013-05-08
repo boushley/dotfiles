@@ -2,9 +2,6 @@
 source ~/.dotfiles/zsh/aliases
 source ~/.dotfiles/zsh/zsh_aliases
 
-# Include boxen setup
-source /opt/boxen/env.sh
-
 # Use vim style editing
 bindkey -v
 
@@ -19,6 +16,7 @@ export SSL_CERT_FILE=/opt/local/etc/openssl/cert.pem
 
 # Setup identities
 ssh-add ~/.ssh/WardPair.pem
+ssh-add ~/.ssh/PreparersMind.pem
 ssh-add ~/.ssh/us-west-1.pem
 
 # Configure the history file location and sizes
@@ -35,7 +33,7 @@ setopt autocd
 export RPROMPT=%~%
 
 # Add macports to the path and android adb
-export PATH=/opt/local/bin:/opt/local/sbin:/sdks/android/platform-tools:/sdks/android/tools:/sdks/play/current:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/share/npm/bin:/sdks/android/platform-tools:/sdks/android/tools:/sdks/play/current:$PATH:~/.dotfiles/bin:/sdks/eb-2.0.4/eb/macosx/python2.7
 
 # Setup a basic Node Path
 export NODE_PATH=/opt/local/lib/node
@@ -43,14 +41,14 @@ export NODE_PATH=/opt/local/lib/node
 # Add jsctags to the Node Path
 export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
 
-# Setup nvm for use with boxen
-source /opt/boxen/nvm/nvm.sh
-nvm use v0.8
-
 # Add hosts from knownhosts to completion
 local knownhosts
 knownhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
 zstyle ':completion:*:(ssh|scp|sftp):*' hosts $knownhosts
+
+# Homebrew Completion
+fpath=($HOME/.zsh/func $fpath)
+typeset -U fpath
 
 # The following lines were added by compinstall
 

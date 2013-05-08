@@ -1,0 +1,17 @@
+NPM===========
+jshint
+httpster
+
+Gems=============
+gem install --no-ri --no-rdoc bundler
+  -- Be sure to rbenv rehash after installing bundler
+
+Homebrew=========
+yajl -- JSON Formatter
+wget -- Sometimes it's nicer than curl
+rbenv -- Ruby Version Switcher
+  -- Add to END of zshrc: if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+ruby-build -- rbenv plugin for installing rubies
+  -- Install 1.9.3 ruby: rbenv install 1.9.3-p392
+node -- NodeJS
+mysql

@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+pid = Process.fork
+if pid.nil? then
+  date = Time.now.strftime "%Y_%m_%d"
+  `mvim ~/journal/#{date}.txt`
+else
+  Process.detach(pid)
+end
