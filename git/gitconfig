@@ -12,3 +12,7 @@
 	autocrlf = input
 	safecrlf = warn
 	excludesfile = ~/.gitignore_global
+[amazon]
+	append-cr-url = true
+[push]
+	default = simple
