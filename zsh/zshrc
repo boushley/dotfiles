@@ -1,7 +1,5 @@
 # Use this to debug any slowness or problems like that
 # setopt XTRACE VERBOSE
-source ~/MacImprovement/bin/MacImprovementSetup.app/Contents/MacOS/setup-htjar
-export SDETOOLS_HOST=boushley-1.desktop.amazon.com
 
 # Include other configuration
 source ~/.aliases
@@ -23,12 +21,6 @@ export EDITOR="/usr/bin/vim"
 # Setup cert file
 #export SSL_CERT_FILE=/opt/local/etc/openssl/cert.pem
 
-# Setup identities
-ssh-add ~/.ssh/WardPair.pem
-ssh-add ~/.ssh/PreparersMind.pem
-ssh-add ~/.ssh/us-west-1.pem
-ssh-add ~/.ssh/fullnoteio-prod.pem
-
 # Configure the history file location and sizes
 HISTFILE=~/.histfile
 HISTSIZE=2000
@@ -45,7 +37,7 @@ export RPROMPT=%~%
 export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 
 # Add macports to the path and android adb
-export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/share/npm/bin:/sdks/android/platform-tools:/sdks/android/tools:$PATH:~/dotfiles/bin:/usr/local/share/npm/lib/node_modules/httpster/bin
+export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/share/npm/bin:$PATH:~/dotfiles/bin
 
 # Setup a basic Node Path
 export NODE_PATH=/usr/local/lib/jsctags/:/opt/local/lib/node
