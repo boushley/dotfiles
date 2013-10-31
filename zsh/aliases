@@ -16,8 +16,8 @@ alias ls='ls -Gh'
 alias lsg='ll | grep'
 
 # Alias Editing
-alias ae='vim ~/.dotfiles/zsh/aliases' #alias edit
-alias ar='source ~/.dotfiles/zsh/aliases'  #alias reload
+alias ae='vim ~/.aliases' #alias edit
+alias ar='source ~/.aliases'  #alias reload
 
 # vimrc editing
 alias ve='vim ~/.vimrc'
@@ -26,7 +26,7 @@ alias ve='vim ~/.vimrc'
 alias todo='mvim ~/Dropbox/documents/aaron/todos/todo.txt'
 
 # zsh profile editing
-alias ze='vim ~/.dotfiles/zsh/zshrc'
+alias ze='vim ~/.zshrc'
 alias zr='source ~/.zshrc'
 
 # Git Aliases
@@ -62,6 +62,7 @@ alias co='git co'
 alias gf='git fetch'
 alias gfo='git fetch origin'
 alias gfch='git fetch'
+alias gfo='git fetch origin'
 alias gd='git diff'
 alias gb='git branch'
 alias gdc='git diff --cached'

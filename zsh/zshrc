@@ -4,9 +4,8 @@ source ~/MacImprovement/bin/MacImprovementSetup.app/Contents/MacOS/setup-htjar
 export SDETOOLS_HOST=boushley-1.desktop.amazon.com
 
 # Include other configuration
-source ~/.dotfiles/zsh/aliases
-source ~/.dotfiles/zsh/zsh_aliases
-source ~/.zsh_aliases
+source ~/.aliases
+source ~/dotfiles/zsh/zsh_aliases
 
 # Use vim style editing
 bindkey -v
@@ -28,7 +27,7 @@ export EDITOR="/usr/bin/vim"
 ssh-add ~/.ssh/WardPair.pem
 ssh-add ~/.ssh/PreparersMind.pem
 ssh-add ~/.ssh/us-west-1.pem
-ssh-add ~/.ssh/amzn_rsa
+ssh-add ~/.ssh/fullnoteio-prod.pem
 
 # Configure the history file location and sizes
 HISTFILE=~/.histfile
@@ -43,10 +42,12 @@ setopt autocd
 
 export RPROMPT=%~%
 
-# Add macports to the path and android adb
-export PATH=/opt/local/bin:/usr/local/bin:/opt/local/sbin:/sdks/android/tools:/sdks/play/current:$PATH:~/bin:/sdks/eb-cli-2.4.0/eb/macosx/python2.7:/usr/local/share/npm/lib/node_modules/httpster/bin:/sdks/android/platform-tools
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 
-# Add jsctags to the Node Path
+# Add macports to the path and android adb
+export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/share/npm/bin:/sdks/android/platform-tools:/sdks/android/tools:$PATH:~/dotfiles/bin:/usr/local/share/npm/lib/node_modules/httpster/bin
+
+# Setup a basic Node Path
 export NODE_PATH=/usr/local/lib/jsctags/:/opt/local/lib/node
 
 # Add hosts from knownhosts to completion
