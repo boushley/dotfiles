@@ -21,9 +21,9 @@ set guioptions-=T " Remove the gui toolbar
 " Setup Indentation
 set autoindent " When adding a new line indent it like the current line or use smartindent
 set smartindent " For c like syntax do indenting
-set shiftwidth=2 " Number of spaces to use for each insertion of (auto)indent.
-set tabstop=2 " What <Tab> is worth in spaces.
-set softtabstop=2 " Feel like tabs, but they're really spaces.
+set shiftwidth=4 " Number of spaces to use for each insertion of (auto)indent.
+set tabstop=4 " What <Tab> is worth in spaces.
+set softtabstop=4 " Feel like tabs, but they're really spaces.
 set expandtab " Changes tabs to spaces when on.
 set foldmethod=indent " turn on folding
 
@@ -31,7 +31,7 @@ set foldmethod=indent " turn on folding
 nmap <leader>s :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
 nmap <leader>S :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
 nmap <leader>m :set expandtab tabstop=8 shiftwidth=8 softtabstop=4<CR>
-nmap <leader>M :set noexpandtab tabstop=8 softtabstop=4 shiftwidth=4<CR>
+nmap <leader>M :set noexpandtab tabstop=4 softtabstop=4 shiftwidth=4<CR>
 
 " Setup Per Directory vimrc files
 set exrc " enable vimrc files per directory
@@ -66,7 +66,14 @@ endif
 " Setup Ctrl+p ctrlp
 set runtimepath^=~/.vim/bundle/ctrlp
 let g:ctrlp_map = '<Leader>t'
+nnoremap <leader>f :CtrlP<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <leader>T :CtrlPBufTag<CR>
+nnoremap <leader>t :CtrlPTag<CR>
+nnoremap <leader>F :CtrlPCurWD<CR>
+nnoremap <leader>M :CtrlPMRUFiles<CR>
+nnoremap <leader>m :CtrlPMixed<CR>
+nnoremap <leader>l :CtrlPLine<CR>
 " COPIED... SHOULD INVESTIGATE FURTHER
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_match_window_reversed = 0

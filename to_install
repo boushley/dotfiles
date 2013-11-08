@@ -1,6 +1,5 @@
 NPM===========
 jshint
-httpster
 
 Gems=============
 gem install --no-ri --no-rdoc bundler
