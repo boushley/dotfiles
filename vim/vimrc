@@ -27,6 +27,9 @@ set softtabstop=4 " Feel like tabs, but they're really spaces.
 set expandtab " Changes tabs to spaces when on.
 set foldmethod=indent " turn on folding
 
+set number " Turn on line numbering by default
+set cursorline " Turn on current line highlighting
+
 " Change the tabstop size
 nmap <leader>s :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
 nmap <leader>S :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
@@ -64,6 +67,9 @@ if has('gui_running')
 endif
 
 " Setup Ctrl+p ctrlp
+set wildignore+=*/tmp/*,*.swp,*.zip " Files to always ignore
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
 set runtimepath^=~/.vim/bundle/ctrlp
 let g:ctrlp_map = '<Leader>t'
 nnoremap <leader>f :CtrlP<CR>
