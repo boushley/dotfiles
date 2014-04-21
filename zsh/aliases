@@ -111,3 +111,22 @@ alias k9='kill -9'
 
 # Gem install
 alias sgi='sudo gem install --no-ri --no-rdoc'
+
+alias port=findProcessUsingPort
+findProcessUsingPort() {
+    lsof -i :$1
+}
+
+alias serve="python -m SimpleHTTPServer"
+
+#alias to-angular="sudo sed -i '' 's/    ProxyPass \/app.*/    ProxyPass \/app http:\/\/127.0.0.1:9000/' /etc/apache2/better/httpd-webapp.conf && sudo apachectl restart"
+#alias from-angular="sudo sed -i '' 's/    ProxyPass \/app.*/    ProxyPass \/app !/' /etc/apache2/better/httpd-webapp.conf && sudo apachectl restart"
+
+#qaCert() {
+#    sudo sed -i '' 's/    SSLCertificateFile .*/    SSLCertificateFile \/etc\/apache2\/ssl\/star_betterment_qa.crt/' /etc/apache2/better/httpd-webapp.conf
+#    sudo sed -i '' 's/    SSLCertificateKeyFile .*/    SSLCertificateKeyFile \/etc\/apache2\/ssl\/star_betterment_qa.key/' /etc/apache2/better/httpd-webapp.conf
+#    sudo sed -i '' 's/    SSLCertificateFile .*/    SSLCertificateFile \/etc\/apache2\/ssl\/star_betterment_qa.crt/' /etc/apache2/better/httpd-brochure.conf
+#    sudo sed -i '' 's/    SSLCertificateKeyFile .*/    SSLCertificateKeyFile \/etc\/apache2\/ssl\/star_betterment_qa.key/' /etc/apache2/better/httpd-brochure.conf
+#    sudo apachectl restart
+#}
+#alias qacert=qaCert
