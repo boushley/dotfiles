@@ -9,6 +9,9 @@ let mapleader = "," " Setup leader key
 call pathogen#infect()
 call pathogen#helptags()
 
+"set relativenumber " Use relative line numbers
+set number " Except make the current line have it's number
+
 " Setup Some of the look
 set guifont=Monaco:h12 " Set the font
 set title " Makes titlestring change the window title.
@@ -77,8 +80,6 @@ nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>T :CtrlPBufTag<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 nnoremap <leader>F :CtrlPCurWD<CR>
-nnoremap <leader>M :CtrlPMRUFiles<CR>
-nnoremap <leader>m :CtrlPMixed<CR>
 nnoremap <leader>l :CtrlPLine<CR>
 " COPIED... SHOULD INVESTIGATE FURTHER
 let g:ctrlp_match_window_bottom = 1

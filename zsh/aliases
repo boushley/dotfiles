@@ -107,7 +107,7 @@ alias ka9='killall -9'
 alias k9='kill -9'
 
 # This trick makes sudo understand all my aliases
-alias sudo='sudo '
+#alias sudo='sudo '
 
 # Gem install
 alias sgi='sudo gem install --no-ri --no-rdoc'
