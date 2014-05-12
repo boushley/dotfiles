@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'FileUtils'
+require 'fileutils'
 
 files_to_link = {
 	"~/dotfiles/git/gitconfig" => "~/.gitconfig",
