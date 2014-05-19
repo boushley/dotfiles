@@ -10,7 +10,6 @@ alias cdb='cd -'
 # Show human friendly numbers and colors
 alias df='df -h'
 alias ll='ls -alGh'
-alias ls='ls -Gh'
 
 # show me files matching "ls grep"
 alias lsg='ll | grep'
@@ -30,8 +29,8 @@ alias ze='vim ~/.zshrc'
 alias zr='source ~/.zshrc'
 
 # Git Aliases
-alias go='git checkout'
-alias go.='git checkout .'
+alias gco='git checkout'
+alias gco.='git checkout .'
 alias gc='git commit'
 alias gs='git status'
 alias gstsh='git stash'
@@ -43,7 +42,6 @@ alias gi='vi .gitignore'
 alias gcm='git ci -m'
 alias gcim='git ci -m'
 alias gci='git ci'
-alias gco='git co'
 alias ga='git add -A'
 alias ga.='git add -A .'
 alias guns='git unstage'
@@ -83,13 +81,11 @@ alias gsmu='git submodule update'
 alias gt='git t'
 
 # Common shell functions
-alias less='less -r'
 alias tf='tail -f'
 alias l='less'
 alias lh='ls -alt | head' # see the last modified files
 alias screen='TERM=screen screen'
 alias cl='clear'
-alias ps='ps aux'
 
 # Zippin
 alias gz='tar -zcvf'
