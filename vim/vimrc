@@ -1,13 +1,33 @@
 " No backwards compatibility with vi
 " KEEP THIS FIRST, IT HAS SIDE EFFECTS ON OTHER SETTINGS
 set nocompatible 
+filetype off " Turn off filetype settings while loading vundle plugins
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ervandew/supertab'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-characterize'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'gcmt/wildfire.vim'
+
+Plugin 'git://git.wincent.com/command-t.git'
+
+call vundle#end()
+filetype plugin indent on " automatically figure out what kind of file we're working with
 
 " Setup some keybindings
 let mapleader = "," " Setup leader key
-
-" Turn on Pathogen for good plugin support
-call pathogen#infect()
-call pathogen#helptags()
 
 "set relativenumber " Use relative line numbers
 set number " Except make the current line have it's number
@@ -69,26 +89,6 @@ if has('gui_running')
   set undofile
 endif
 
-" Setup Ctrl+p ctrlp
-set wildignore+=*/tmp/*,*.swp,*.zip " Files to always ignore
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-
-set runtimepath^=~/.vim/bundle/ctrlp
-let g:ctrlp_map = '<Leader>t'
-nnoremap <leader>f :CtrlP<CR>
-nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>T :CtrlPBufTag<CR>
-nnoremap <leader>t :CtrlPTag<CR>
-nnoremap <leader>F :CtrlPCurWD<CR>
-nnoremap <leader>l :CtrlPLine<CR>
-" COPIED... SHOULD INVESTIGATE FURTHER
-let g:ctrlp_match_window_bottom = 1
-let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_dotfiles = 0
-let g:ctrlp_switch_buffer = 0
-" END COPIED... SHOULD INVESTIGATE FURTHER
 
 " Searching Options
 set hlsearch "set noh " Highlight matches when searching.
@@ -99,6 +99,10 @@ set smartcase " If the first letter if capitalized search is case sensitive.
 " Scroll the viewport a bit faster
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
+
+" CommandT Customization
+nnoremap <silent> <Leader>f :CommandT<CR>
+nnoremap <silent> <Leader>b :CommandTBuffer<CR>
 
 " Take care of some bells
 set noerrorbells " No more beep! ;-)
@@ -140,7 +144,6 @@ set formatoptions=cqrow " Options for the "text format" command ("gq")
 set listchars=tab:>-,trail:-,eol:$,extends:>,precedes:<
 " set invlist " <--These toggles showing these characters
 
-filetype plugin indent on " automatically figure out what kind of file we're working with
 set shortmess=aostITO " Kind of messages to show. Abbreviate them all!
 set showcmd " Show current uncompleted command? Absolutely!
 set showmatch " Briefly jump to the matching brace when typed
