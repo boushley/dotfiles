@@ -18,6 +18,9 @@ bindkey "^[[B" history-search-forward
 # Define the editor for some commands
 export EDITOR="/usr/bin/vim"
 
+# Directory Colors
+eval `dircolors ~/dotfiles/linux/dircolors.256dark`
+
 # Setup cert file
 #export SSL_CERT_FILE=/opt/local/etc/openssl/cert.pem
 

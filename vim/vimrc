@@ -20,6 +20,7 @@ Plugin 'tpope/vim-characterize'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'gcmt/wildfire.vim'
+Plugin 'runar/vim-css-color'
 
 Plugin 'git://git.wincent.com/command-t.git'
 
@@ -32,8 +33,14 @@ let mapleader = "," " Setup leader key
 "set relativenumber " Use relative line numbers
 set number " Except make the current line have it's number
 
+if has("gui_gtk2")
+    set guifont=Ubuntu\ Mono\ 12 " Set the font
+elseif has("gui_macvim")
+    set guifont=Consolas:h12
+elseif has("gui_win32")
+    set guifont=Consolas:h11
+end
 " Setup Some of the look
-set guifont=Monaco:h12 " Set the font
 set title " Makes titlestring change the window title.
 set noicon " See the help.
 colorscheme solarized
@@ -103,6 +110,10 @@ nnoremap <C-y> 3<C-y>
 " CommandT Customization
 nnoremap <silent> <Leader>f :CommandT<CR>
 nnoremap <silent> <Leader>b :CommandTBuffer<CR>
+noremap <F5> :CommandTFlush<CR>
+let g:CommandTMatchWindowAtTop=1
+let g:CommandTWildIgnore=&wildignore . ",**/bower_components/*,**/node_modules/*"
+let g:CommandTCancelMap=['<C-c>', '<Esc>']
 
 " Take care of some bells
 set noerrorbells " No more beep! ;-)
@@ -141,7 +152,8 @@ set formatoptions=cqrow " Options for the "text format" command ("gq")
 " 2 - use second line of paragraph for formatting
 
 " when list is on show whitespace characters like follows
-set listchars=tab:>-,trail:-,eol:$,extends:>,precedes:<
+set listchars=tab:>-,trail:·,extends:>,precedes:<
+set list
 " set invlist " <--These toggles showing these characters
 
 set shortmess=aostITO " Kind of messages to show. Abbreviate them all!
@@ -231,8 +243,6 @@ map <F2> :NERDTreeToggle<CR>
 
 " Supertab Settings
 let g:SuperTabDefaultCompletionType = "<c-p>"
-map <F5> :call ToggleDefaultSupertabType()<CR>
-imap <F5> <C-O>:call ToggleDefaultSupertabType()<CR>
 function! ToggleDefaultSupertabType()
     if g:SuperTabDefaultCompletionType == "<c-x><c-u>"
         :call SuperTabSetCompletionType("<c-p>")
@@ -255,14 +265,6 @@ imap <Down> <C-O>gj
 nmap j gj
 imap <Up> <C-O>gk
 nmap k gk
-
-" Movements in insert mode
-imap <C-L> <Right>
-imap <C-K> <Up>
-imap <C-J> <Down>
-" How do I do left in insert mode?
-" I like <C-H> as backspace, I can't get meta to work
-imap <C-U> <Left>
 
 " ===================================================================
 " Functions
@@ -360,3 +362,15 @@ autocmd BufReadPost *
 			\   exe "normal g`\"" |
 			\ endif
 
+function s:MkNonExDir(file, buf)
+    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+        let dir=fnamemodify(a:file, ':h')
+        if !isdirectory(dir)
+            call mkdir(dir, 'p')
+        endif
+    endif
+endfunction
+augroup BWCCreateDir
+    autocmd!
+    autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+augroup END
