@@ -1,34 +1,36 @@
 " No backwards compatibility with vi
 " KEEP THIS FIRST, IT HAS SIDE EFFECTS ON OTHER SETTINGS
 set nocompatible 
-filetype off " Turn off filetype settings while loading vundle plugins
+filetype off " Turn off filetype settings while loading neobundle plugins
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" set the runtime path to include neobundle and initialize
+set rtp+=~/.vim/bundle/neobundle.vim/
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+" let neobundle manage neobundle, required
+NeoBundleFetch 'Shouogo/neobundle.vim'
 
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ervandew/supertab'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-characterize'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'Lokaltog/vim-powerline'
-Plugin 'gcmt/wildfire.vim'
-Plugin 'runar/vim-css-color'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'ervandew/supertab'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'tpope/vim-characterize'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'gcmt/wildfire.vim'
+NeoBundle 'runar/vim-css-color', {'branch': 'scss-support'}
 
-Plugin 'git://git.wincent.com/command-t.git'
+NeoBundle 'git://git.wincent.com/command-t.git'
 
-call vundle#end()
+call neobundle#end()
 filetype plugin indent on " automatically figure out what kind of file we're working with
 
 " Setup some keybindings
 let mapleader = "," " Setup leader key
+
+NeoBundleCheck
 
 "set relativenumber " Use relative line numbers
 set number " Except make the current line have it's number
@@ -107,12 +109,20 @@ set smartcase " If the first letter if capitalized search is case sensitive.
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
+" Turn on persistent undo
+if exists("+undofile")
+    set undodir=~/.vim/undo
+    set undofile
+    set undolevels=8000
+    set undoreload=30000
+endif
+
 " CommandT Customization
 nnoremap <silent> <Leader>f :CommandT<CR>
 nnoremap <silent> <Leader>b :CommandTBuffer<CR>
 noremap <F5> :CommandTFlush<CR>
 let g:CommandTMatchWindowAtTop=1
-let g:CommandTWildIgnore=&wildignore . ",**/bower_components/*,**/node_modules/*"
+let g:CommandTWildIgnore=&wildignore . ",**/bower_components/*,**/node_modules/*,**/build/*,**/web/htdocs/static/*"
 let g:CommandTCancelMap=['<C-c>', '<Esc>']
 
 " Take care of some bells
