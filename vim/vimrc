@@ -280,20 +280,6 @@ nmap k gk
 " Functions
 " ===================================================================
 
-" tab expansion in insert mode:
-function! InsertTabWrapper(dir)
-	let col = col('.')-1
-	if(!col || getline('.')[col-1] !~ '\k')
-		return "\<Tab>"
-	elseif a:dir == "backward"
-		return "\<C-P>"
-	else
-		return "\<C-N>"
-	endif
-endf
-inoremap <Tab> <C-R>=InsertTabWrapper("forward")<CR>
-inoremap <S-Tab> <C-R>=InsertTabWrapper("backward")<CR>
-
 " paranthesis matchers
 inoremap ( (<C-V>)<Left>
 inoremap ) <C-R>=ClosePair(')')<CR>
