@@ -1,39 +1,6 @@
-[submodule "vim/vim/bundle/nerdtree"]
-	path = vim/vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-[submodule "vim/vim/bundle/wildfire.vim"]
-	path = vim/vim/bundle/wildfire.vim
-	url = https://github.com/gcmt/wildfire.vim.git
-[submodule "vim/vim/bundle/supertab"]
-	path = vim/vim/bundle/supertab
-	url = https://github.com/tsaleh/vim-supertab.git
-[submodule "vim/vim/bundle/vim-colors-solarized"]
-	path = vim/vim/bundle/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "vim/vim/bundle/vim-repeat"]
-	path = vim/vim/bundle/vim-repeat
-	url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/vim/bundle/vim-surround"]
-	path = vim/vim/bundle/vim-surround
-	url = https://github.com/tpope/vim-surround.git
-[submodule "vim/vim/bundle/vim-powerline"]
-	path = vim/vim/bundle/vim-powerline
-	url = https://github.com/Lokaltog/vim-powerline.git
-[submodule "vim/vim/bundle/vim-fugitive"]
-	path = vim/vim/bundle/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
-[submodule "vim/vim/bundle/vim-characterize"]
-	path = vim/vim/bundle/vim-characterize
-	url = https://github.com/tpope/vim-characterize.git
-[submodule "vim/vim/bundle/syntastic"]
-	path = vim/vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic.git
 [submodule "linux/guake-colors-solarized"]
 	path = linux/guake-colors-solarized
 	url = https://github.com/coolwanglu/guake-colors-solarized.git
-[submodule "vim/vim/bundle/Vundle.vim"]
-	path = vim/vim/bundle/Vundle.vim
-	url = https://github.com/gmarik/Vundle.vim.git
-[submodule "vim/vim/bundle/command-t"]
-	path = vim/vim/bundle/command-t
-	url = https://github.com/wincent/Command-T.git
+[submodule "vim/vim/bundle/neobundle.vim"]
+	path = vim/vim/bundle/neobundle.vim
+	url = https://github.com/Shougo/neobundle.vim.git
