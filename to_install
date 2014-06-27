@@ -4,6 +4,7 @@ jshint
 Gems=============
 gem install --no-ri --no-rdoc bundler
   -- Be sure to rbenv rehash after installing bundler
+gem install tmuxinator
 
 Homebrew=========
 yajl -- JSON Formatter

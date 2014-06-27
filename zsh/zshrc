@@ -45,6 +45,9 @@ export PATH=/opt/local/bin:/opt/local/sbin:~/npm/bin:/usr/local/share/npm/bin:$P
 # Setup a basic Node Path
 export NODE_PATH=/usr/local/lib/jsctags/:/opt/local/lib/node
 
+# Source tmuxinator completion
+source ~/dotfiles/tmux/tmuxinator.zsh
+
 # Add hosts from knownhosts to completion
 local knownhosts
 knownhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
