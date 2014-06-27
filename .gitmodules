@@ -4,3 +4,6 @@
 [submodule "vim/vim/bundle/neobundle.vim"]
 	path = vim/vim/bundle/neobundle.vim
 	url = https://github.com/Shougo/neobundle.vim.git
+[submodule "tmux/tmuxinator"]
+	path = tmux/tmuxinator
+	url = https://github.com/tmuxinator/tmuxinator.git

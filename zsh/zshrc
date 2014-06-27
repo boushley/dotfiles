@@ -40,7 +40,7 @@ export RPROMPT=%~%
 export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 
 # Add macports to the path and android adb
-export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/share/npm/bin:$PATH:~/dotfiles/bin
+export PATH=/opt/local/bin:/opt/local/sbin:~/npm/bin:/usr/local/share/npm/bin:$PATH:~/dotfiles/bin
 
 # Setup a basic Node Path
 export NODE_PATH=/usr/local/lib/jsctags/:/opt/local/lib/node
