@@ -44,6 +44,7 @@ elseif has("gui_win32")
     set guifont=Consolas:h11
 end
 " Setup Some of the look
+set t_Co=256
 set title " Makes titlestring change the window title.
 set noicon " See the help.
 colorscheme solarized

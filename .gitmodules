@@ -7,3 +7,6 @@
 [submodule "tmux/tmuxinator"]
 	path = tmux/tmuxinator
 	url = https://github.com/tmuxinator/tmuxinator.git
+[submodule "linux/gnome-terminal-colors-solarized"]
+	path = linux/gnome-terminal-colors-solarized
+	url = https://github.com/Anthony25/gnome-terminal-colors-solarized.git
