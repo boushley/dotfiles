@@ -25,8 +25,7 @@ NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'Valloric/YouCompleteMe'
-
-NeoBundle 'git://git.wincent.com/command-t.git'
+NeoBundle 'kien/ctrlp.vim'
 
 call neobundle#end()
 filetype plugin indent on " automatically figure out what kind of file we're working with
@@ -123,13 +122,13 @@ if exists("+undofile")
     set undoreload=30000
 endif
 
-" CommandT Customization
-nnoremap <silent> <Leader>f :CommandT<CR>
-nnoremap <silent> <Leader>b :CommandTBuffer<CR>
-noremap <F5> :CommandTFlush<CR>
-let g:CommandTMatchWindowAtTop=1
-let g:CommandTWildIgnore=&wildignore . ",**/bower_components/*,**/node_modules/*,**/build/*,**/web/htdocs/static/*,*.class"
-let g:CommandTCancelMap=['<C-c>', '<Esc>']
+" Control P ctrlp Customization
+nnoremap <silent> <Leader>f :CtrlP<CR>
+nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.exe
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " Take care of some bells
 set noerrorbells " No more beep! ;-)
