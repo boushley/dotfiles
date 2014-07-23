@@ -15,7 +15,6 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'ervandew/supertab'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-characterize'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -25,6 +24,7 @@ NeoBundle 'runar/vim-css-color', {'branch': 'scss-support'}
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'Valloric/YouCompleteMe'
 
 NeoBundle 'git://git.wincent.com/command-t.git'
 
