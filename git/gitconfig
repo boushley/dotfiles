@@ -12,7 +12,9 @@
 	autocrlf = input
 	safecrlf = warn
 	excludesfile = ~/.gitignore_global
-[amazon]
-	append-cr-url = true
+[merge]
+	conflictstyle = diff3
 [push]
 	default = simple
+[branch]
+	autosetuprebase = always
