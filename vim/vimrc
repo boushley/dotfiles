@@ -10,13 +10,14 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " let neobundle manage neobundle, required
 NeoBundleFetch 'Shouogo/neobundle.vim'
 
+NeoBundle 'tpope/vim-characterize'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-sleuth'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'tpope/vim-characterize'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'gcmt/wildfire.vim'
@@ -26,6 +27,7 @@ NeoBundle 'groenewege/vim-less'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'christoomey/vim-tmux-navigator'
 
 call neobundle#end()
 filetype plugin indent on " automatically figure out what kind of file we're working with
@@ -58,10 +60,6 @@ set guioptions-=T " Remove the gui toolbar
 " Setup Indentation
 set autoindent " When adding a new line indent it like the current line or use smartindent
 set smartindent " For c like syntax do indenting
-set shiftwidth=4 " Number of spaces to use for each insertion of (auto)indent.
-set tabstop=4 " What <Tab> is worth in spaces.
-set softtabstop=4 " Feel like tabs, but they're really spaces.
-set expandtab " Changes tabs to spaces when on.
 set foldmethod=indent " turn on folding
 
 set number " Turn on line numbering by default
@@ -127,8 +125,14 @@ nnoremap <silent> <Leader>f :CtrlP<CR>
 nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.exe
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_user_command = {
+    \ 'types': {
+        \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard | grep -v web\/htdocs'],
+        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+        \ },
+    \ 'fallback': 'find %s -type f'
+    \ }
 
 " Take care of some bells
 set noerrorbells " No more beep! ;-)
