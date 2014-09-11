@@ -61,6 +61,9 @@ set guioptions-=T " Remove the gui toolbar
 set autoindent " When adding a new line indent it like the current line or use smartindent
 set smartindent " For c like syntax do indenting
 set foldmethod=indent " turn on folding
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 
 set number " Turn on line numbering by default
 set cursorline " Turn on current line highlighting
