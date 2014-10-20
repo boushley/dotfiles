@@ -74,6 +74,9 @@ nmap <leader>S :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
 nmap <leader>m :set expandtab tabstop=8 shiftwidth=8 softtabstop=4<CR>
 nmap <leader>M :set noexpandtab tabstop=4 softtabstop=4 shiftwidth=4<CR>
 
+" Copy the visually selected text
+vnorem // y/<c-r>"<cr>
+
 " Setup Per Directory vimrc files
 set exrc " enable vimrc files per directory
 set secure " Disable unsafe commands in per directory .vimrc files
