@@ -13,7 +13,7 @@ alias ll='ls -alGh'
 
 # Docker Helpers
 alias dockercleancontainers="docker ps -a --no-trunc| grep 'Exit' | awk '{print \$1}' | xargs -L 1 -r docker rm"
-alias dockercleanimages="docker images -a --no-trunc | grep none | awk '{print \$3}' | xargs -L 1 -r docker rmi"
+alias dockercleanimages="docker images -a --no-trunc | grep '<none>' | awk '{print \$3}' | xargs -L 1 -r docker rmi"
 alias dockerclean="dockercleancontainers && dockercleanimages"
 
 # show me files matching "ls grep"
