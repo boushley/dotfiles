@@ -43,7 +43,7 @@ set number " Except make the current line have it's number
 if has("gui_gtk2")
     set guifont=Ubuntu\ Mono\ 12 " Set the font
 elseif has("gui_macvim")
-    set guifont=Consolas:h12
+    set guifont=Monaco:h14
 elseif has("gui_win32")
     set guifont=Consolas:h11
 end
