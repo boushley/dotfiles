@@ -37,7 +37,7 @@ setopt autocd
 
 export RPROMPT=%~%
 
-export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
 # Add macports to the path and android adb
 export PATH=/opt/local/bin:/opt/local/sbin:~/npm/bin:/usr/local/share/npm/bin:~/dotfiles/bin:$PATH
