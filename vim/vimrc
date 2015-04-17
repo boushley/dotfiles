@@ -81,10 +81,6 @@ vnorem // y/<c-r>"<cr>
 set exrc " enable vimrc files per directory
 set secure " Disable unsafe commands in per directory .vimrc files
 
-" Set vim notes to be in Dropbox
-let g:notes_directory = '~/Dropbox/documents/aaron/vim-notes'
-let g:notes_suffix = '.txt'
-
 " When dealing with marks ` is more useful than ', so make the better one easier to reach
 nnoremap ' `
 nnoremap ` '
