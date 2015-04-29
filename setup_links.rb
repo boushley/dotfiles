@@ -10,6 +10,7 @@ files_to_link = {
 
 	"~/dotfiles/vim/vim" => "~/.vim",
 	"~/dotfiles/vim/vimrc" => "~/.vimrc",
+	"~/dotfiles/linux/i3" => "~/.i3",
 }
 
 files_to_link.each do |source, target|
