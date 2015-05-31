@@ -29,6 +29,7 @@ NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'vim-scripts/ZoomWin'
+NeoBundle 'othree/yajs.vim'
 
 call neobundle#end()
 filetype plugin indent on " automatically figure out what kind of file we're working with
@@ -307,6 +308,9 @@ function! ClosePair(char)
 	endif
 endf
 
+" Recognize *.es6 files as js files
+autocmd BufRead,BufNewFile *.es6 set filetype=javascript
+
 " pretty-print JSON files
 autocmd BufRead,BufNewFile *.json set filetype=json
 autocmd Syntax json sou ~/.vim/syntax/json.vim
@@ -353,6 +357,27 @@ function ToggleHex()
   let &readonly=l:oldreadonly
   let &modifiable=l:oldmodifiable
 endfunction
+
+" for tmux to automatically set paste and nopaste mode at the time pasting (as
+" happens in VIM UI)
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 
 " =================================================================== 

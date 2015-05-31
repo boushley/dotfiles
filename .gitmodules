@@ -10,3 +10,6 @@
 [submodule "linux/gnome-terminal-colors-solarized"]
 	path = linux/gnome-terminal-colors-solarized
 	url = https://github.com/Anthony25/gnome-terminal-colors-solarized.git
+[submodule "zsh/pure-prompt"]
+	path = zsh/pure-prompt
+	url = https://github.com/sindresorhus/pure.git

@@ -35,7 +35,6 @@ export LESS=-R
 # Automatically change to directory if you just type directory name
 setopt autocd
 
-export RPROMPT=%~%
 
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
@@ -53,8 +52,7 @@ local knownhosts
 knownhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
 zstyle ':completion:*:(ssh|scp|sftp):*' hosts $knownhosts
 
-# Homebrew Completion
-fpath=($HOME/.zsh/func $fpath)
+fpath=($HOME/.zsh/func $HOME/dotfiles/zsh/func $fpath)
 typeset -U fpath
 
 # The following lines were added by compinstall
