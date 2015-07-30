@@ -19,7 +19,13 @@ bindkey "^[[B" history-search-forward
 export EDITOR="/usr/bin/vim"
 
 # Directory Colors
-eval `dircolors ~/dotfiles/linux/dircolors.256dark`
+if whence dircolors >/dev/null; then
+  eval `dircolors ~/dotfiles/linux/dircolors.256dark`
+  zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+else
+  export CLICOLOR=1
+  zstyle ':completion:*:default' list-colors ''
+fi
 
 # Setup cert file
 #export SSL_CERT_FILE=/opt/local/etc/openssl/cert.pem
