@@ -1,1 +1,1 @@
-../pure-prompt/pure.zsh
+../pure/pure.zsh

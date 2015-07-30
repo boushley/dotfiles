@@ -1,1 +1,1 @@
-../pure-prompt/async.zsh
+../pure/async.zsh
