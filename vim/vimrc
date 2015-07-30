@@ -21,7 +21,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'gcmt/wildfire.vim'
-NeoBundle 'runar/vim-css-color', {'branch': 'scss-support'}
+NeoBundle 'ap/vim-css-color'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'fatih/vim-go'
