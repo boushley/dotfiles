@@ -85,6 +85,15 @@ alias gsmi='git submodule init'
 alias gsmu='git submodule update'
 alias gt='git t'
 
+# tig Aliases
+alias tso=tigShowOrigin
+tigShowOrigin() {
+    tig show origin/$1
+}
+
+# node items
+alias ns='npm-shrinkwrap --dev'
+
 # Common shell functions
 alias tf='tail -f'
 alias l='less'
