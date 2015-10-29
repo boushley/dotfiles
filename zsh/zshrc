@@ -53,6 +53,9 @@ export NODE_PATH=/usr/local/lib/jsctags/:/opt/local/lib/node
 # Source tmuxinator completion
 source ~/dotfiles/tmux/tmuxinator.zsh
 
+# Auto setup ssh-agent
+. ~/dotfiles/bin/ssh-find-agent.sh
+
 # Add hosts from knownhosts to completion
 local knownhosts
 knownhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )

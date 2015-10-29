@@ -49,7 +49,7 @@ bindsym $mod+d exec dmenu_run
 
 # Auto assign windows to workspace
 # Assign Chrome Hangouts to workspace 1
-assign [class="^Google-chrome-beta$" instance="^crx_knipolnnllmklapflnccelgolnpehhpl$"] 8
+#assign [class="^Google-chrome-beta$" instance="^crx_knipolnnllmklapflnccelgolnpehhpl$"] 8
 
 # Auto start some applications
 exec --no-startup-id ~/bin/default-applications

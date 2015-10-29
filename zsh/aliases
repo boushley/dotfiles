@@ -88,7 +88,7 @@ alias gt='git t'
 # tig Aliases
 alias tso=tigShowOrigin
 tigShowOrigin() {
-    tig show origin/$1
+    tig origin/$1
 }
 
 # node items
