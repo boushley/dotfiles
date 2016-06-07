@@ -1,0 +1,65 @@
+#!/usr/bin/python
+
+from urlparse import urljoin, urlparse
+import urllib2, os.path, os, sys, re
+ 
+def mirrorManifest(manifestURL):
+    parsedURL = urlparse(manifestURL)
+    manifestPath = parsedURL.path[1:]
+    manifestDirname = os.path.dirname(manifestPath)
+    manifestFilename = os.path.basename(manifestPath)
+
+    print 'Reading {0}:'.format(parsedURL.geturl())
+    conn = urllib2.urlopen(parsedURL.geturl())
+    manifest = conn.read()
+
+    if not os.path.isdir(manifestDirname):
+    	os.makedirs(manifestDirname)
+
+    with open(manifestPath, "w+") as manifp:
+        manifp.write(manifest)
+
+    uriRE = re.compile('.*URI="([^"]*)"')
+    subresources = set() 
+    for line in manifest.split("\n"):
+        line = line.strip()
+        if line.startswith("#"):
+            match = uriRE.match(line)
+            if match:
+                subresources.add(match.group(1))
+            continue
+
+        if not len(line):
+            continue
+
+        subresources.add(line)
+
+    for subresource in subresources:
+        subresourceURL = urlparse(urljoin(manifestURL, subresource))
+ 
+        subresourcePath = subresourceURL.path[1:]
+        subresourceDirname = os.path.dirname(subresourcePath)
+        subresourceFilename = os.path.basename(subresourcePath)
+        subresourceExtension = os.path.splitext(subresourcePath)[1]
+
+        if subresourceExtension in ['.m3u', '.m3u8']:
+            mirrorManifest(subresourceURL.geturl())
+            continue
+
+        if not os.path.isdir(subresourceDirname):
+            os.makedirs(subresourceDirname)
+
+        if os.path.isfile(subresourcePath):
+            continue
+
+        print 'Reading {0}:'.format(subresourceURL.geturl())
+        conn = urllib2.urlopen(subresourceURL.geturl())
+        subresource = conn.read()
+        with open(subresourcePath, 'w+') as subresourceFP:
+            subresourceFP.write(subresource)
+ 
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        sys.stderr.write('Usage: ' + sys.argv[0] + ' <URL>\n');
+        exit(-1)
+    mirrorManifest(sys.argv[1])

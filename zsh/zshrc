@@ -17,6 +17,9 @@ bindkey "^[[B" history-search-forward
 
 # Define the editor for some commands
 export EDITOR="/usr/bin/vim"
+if [ -f "/usr/local/bin/vim" ]; then
+  export EDITOR="/usr/local/bin/vim"
+fi
 
 # Directory Colors
 if whence dircolors >/dev/null; then

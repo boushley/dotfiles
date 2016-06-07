@@ -31,6 +31,10 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'othree/yajs.vim'
 NeoBundle 'docker/docker', {'rtp': '/contrib/syntax/vim/'}
+NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'HerringtonDarkholme/yats.vim'
+NeoBundle 'Quramy/tsuquyomi'
+NeoBundle 'Shougo/unite.vim'
 
 call neobundle#end()
 filetype plugin indent on " automatically figure out what kind of file we're working with
