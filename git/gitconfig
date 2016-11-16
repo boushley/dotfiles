@@ -8,6 +8,7 @@
 	ui = true
 [alias]
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	please = push --force-with-lease
 [core]
 	autocrlf = input
 	safecrlf = warn
