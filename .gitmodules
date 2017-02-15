@@ -15,4 +15,4 @@
 	url = https://github.com/sindresorhus/pure.git
 [submodule "zsh/pure"]
 	path = zsh/pure
-	url = git@github.com:boushley/pure.git
+	url = https://github.com/boushley/pure.git
