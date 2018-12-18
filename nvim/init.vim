@@ -26,7 +26,9 @@ NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'junegunn/fzf.vim'
+NeoBundle 'mileszs/ack.vim'
+"NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'othree/yajs.vim'
@@ -129,19 +131,23 @@ if exists("+undofile")
     set undoreload=30000
 endif
 
+" FZF For File Completion
+set rtp+=/usr/local/opt/fzf
+nmap <Leader>f :Files<CR>
+
 " Control P ctrlp Customization
-nnoremap <silent> <Leader>f :CtrlP<CR>
-nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.exe
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_user_command = {
-    \ 'types': {
-        \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard | grep -v web\/htdocs'],
-        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-        \ },
-    \ 'fallback': 'find %s -type f'
-    \ }
+"nnoremap <silent> <Leader>f :CtrlP<CR>
+"nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
+"set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.exe
+"let g:ctrlp_working_path_mode = 'ra'
+"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+"let g:ctrlp_user_command = {
+"    \ 'types': {
+"        \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard | grep -v web\/htdocs'],
+"        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+"        \ },
+"    \ 'fallback': 'find %s -type f'
+"    \ }
 
 " Take care of some bells
 set noerrorbells " No more beep! ;-)

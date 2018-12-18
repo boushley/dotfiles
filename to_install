@@ -17,3 +17,5 @@ ruby-build -- rbenv plugin for installing rubies
 node -- NodeJS
 mysql
 casperjs
+tmux
+neovim
