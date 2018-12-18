@@ -17,8 +17,8 @@ bindkey "^[[B" history-search-forward
 
 # Define the editor for some commands
 export EDITOR="/usr/bin/vim"
-if [ -f "/usr/local/bin/vim" ]; then
-  export EDITOR="/usr/local/bin/vim"
+if [ -f "/usr/local/bin/nvim" ]; then
+  export EDITOR="/usr/local/bin/nvim"
 fi
 
 # Directory Colors
@@ -48,7 +48,7 @@ setopt autocd
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
 # Add macports to the path and android adb
-export PATH=/opt/local/bin:/opt/local/sbin:~/npm/bin:/usr/local/share/npm/bin:~/dotfiles/bin:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:~/npm/bin:/usr/local/share/npm/bin:~/dotfiles/bin:~/bin:$PATH
 
 # Setup a basic Node Path
 export NODE_PATH=/usr/local/lib/jsctags/:/opt/local/lib/node

@@ -13,7 +13,6 @@ files_to_link = {
 	"~/dotfiles/vim/vim" => "~/.vim",
 	"~/dotfiles/vim/vimrc" => "~/.vimrc",
 	"~/dotfiles/nvim/init.vim" => "~/.config/nvim/init.vim",
-	"~/dotfiles/nvim/vimrc" => "~/.config/nvim/vimrc",
 	"~/dotfiles/linux/i3" => "~/.i3",
 }
 

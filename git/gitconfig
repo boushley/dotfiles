@@ -1,31 +1,39 @@
 [user]
 	name = Aaron Boushley
-	email = boushley@gmail.com
+	email = aboushley@axon.com
 [color]
 	diff = auto
 	status = auto
 	merge = auto
 	ui = true
 [alias]
-    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 	please = push --force-with-lease
+	pushup = !git push -u origin `git symbolic-ref --short HEAD`
+	what = log --left-right --cherry-pick --oneline --pretty=format:\"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s\" --date=short
 [core]
 	autocrlf = input
 	safecrlf = warn
 	excludesfile = ~/.gitignore_global
 [merge]
+	tool = intellij
 	conflictstyle = diff3
 [push]
 	default = simple
 [branch]
 	autosetuprebase = always
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[mergetool "intellij"]
+	cmd = /usr/local/bin/idea merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+	trustExitCode = true
+[diff]
+	tool = intellij
+[difftool "intellij"]
+	cmd = /usr/local/bin/idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
+[pager]
+	diff = diff-so-fancy | less --tabs=1,5 -RX
+	show = diff-so-fancy | less --tabs=1,5 -RX
