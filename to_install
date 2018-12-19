@@ -1,3 +1,5 @@
+n - via `make install` -- https://github.com/tj/n
+
 NPM===========
 jshint
 
@@ -19,3 +21,5 @@ mysql
 casperjs
 tmux
 neovim
+reattach-to-user-namespace
+yarn --without-node

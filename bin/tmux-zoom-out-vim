@@ -2,11 +2,15 @@
 set -e
 
 cmd="$(tmux display -p '#{pane_current_command}')"
-cmd="$(basename "${cmd,,*}")"
+secondCmd="$(basename "$cmd")"
 
 tmux resize-pane -Z
 
-if [ "${cmd%m}" = "vi" ]; then
+if [ "${secondCmd%m}" = "vi" ]; then
+  sleep 0.1
+  tmux send-keys C-w =
+fi
+if [ "${secondCmd}" = "nvim" ]; then
   sleep 0.1
   tmux send-keys C-w =
 fi
