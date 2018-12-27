@@ -67,6 +67,17 @@ zstyle ':completion:*:(ssh|scp|sftp):*' hosts $knownhosts
 fpath=($HOME/.zsh/func $HOME/dotfiles/zsh/func $fpath)
 typeset -U fpath
 
+# cd to current Finder directory
+# https://github.com/raine/cli-goodies/tree/55ded6829bbfc54761cf6cab4e154e81290ae935#cd-to-current-finder-directory
+cdf() {
+  target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
+  if [ "$target" != "" ]; then
+    cd "$target"; pwd
+  else
+    echo 'No Finder window found' >&2
+  fi
+}
+
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _complete _ignored _approximate

@@ -134,6 +134,10 @@ endif
 " FZF For File Completion
 set rtp+=/usr/local/opt/fzf
 nmap <Leader>f :Files<CR>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
 " Control P ctrlp Customization
 "nnoremap <silent> <Leader>f :CtrlP<CR>

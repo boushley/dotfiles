@@ -11,6 +11,7 @@
 	please = push --force-with-lease
 	pushup = !git push -u origin `git symbolic-ref --short HEAD`
 	what = log --left-right --cherry-pick --oneline --pretty=format:\"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s\" --date=short
+	remove-merged-branches = !git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d
 [core]
 	autocrlf = input
 	safecrlf = warn

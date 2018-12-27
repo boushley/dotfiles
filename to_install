@@ -23,3 +23,6 @@ tmux
 neovim
 reattach-to-user-namespace
 yarn --without-node
+tree
+htop
+the_silver_searcher
