@@ -1,5 +1,10 @@
 # Aliases in this file are bash and zsh compatible
 
+# Autojump with fzf
+fzf-j_widget() cd $(cat ~/Library/autojump/autojump.txt | sort -nr | awk '{print $2}' | fzf +s)
+zle -N fzf-j_widget
+bindkey "^[j" fzf-j_widget
+
 # PS
 alias psg="ps aux | grep "
 alias psr='ps aux | grep ruby'
