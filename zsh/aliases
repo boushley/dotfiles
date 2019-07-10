@@ -1,9 +1,7 @@
 # Aliases in this file are bash and zsh compatible
 
 # Autojump with fzf
-fzf-j_widget() cd $(cat ~/Library/autojump/autojump.txt | sort -nr | awk '{print $2}' | fzf +s)
-zle -N fzf-j_widget
-bindkey "^[j" fzf-j_widget
+alias z='cd $(cat ~/Library/autojump/autojump.txt | sort -nr | awk "{print \$2}" | fzf +s || pwd)'
 
 # PS
 alias psg="ps aux | grep "
@@ -39,6 +37,7 @@ alias ze='vim ~/.zshrc'
 alias zr='source ~/.zshrc'
 
 # Git Aliases
+alias gclean='git clean -e ".idea" -dfx'
 alias gco='git checkout'
 alias gco.='git checkout .'
 alias gc='git commit'
