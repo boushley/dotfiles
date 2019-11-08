@@ -42,3 +42,8 @@
 	insteadOf = https://git.taservs.net/
 [submodule]
 	recurse = true
+[sendemail]
+	smtpserver = smtp.gmail.com
+	smtpserverport = 587
+	smtpencryption = tls
+	smtpuser = boushley@gmail.com
