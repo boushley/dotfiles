@@ -35,8 +35,8 @@ fi
 
 # Configure the history file location and sizes
 HISTFILE=~/.histfile
-HISTSIZE=2000
-SAVEHIST=2000
+HISTSIZE=5000
+SAVEHIST=5000
 
 # Fixes a problem where git diff with color doesn't show colors
 export LESS=-R 

@@ -16,6 +16,9 @@ files_to_link = {
 	"~/dotfiles/linux/i3" => "~/.i3",
 }
 
+FileUtils.mkdir_p("~/.config/nvim")
+
+
 files_to_link.each do |source, target|
 	source = File.expand_path(source)
 	target = File.expand_path(target)

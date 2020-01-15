@@ -16,9 +16,7 @@
 	autocrlf = input
 	safecrlf = warn
 	excludesfile = ~/.gitignore_global
-[merge]
-	tool = intellij
-	conflictstyle = diff3
+	precomposeUnicode = true
 [push]
 	default = simple
 [branch]
@@ -28,6 +26,11 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[merge]
+	tool = vscodium
+	conflictstyle = diff3
+[mergetool "vscodium"]
+	cmd = code --wait $MERGED
 [pager]
 	diff = diff-so-fancy | less --tabs=1,5 -RX
 	show = diff-so-fancy | less --tabs=1,5 -RX
