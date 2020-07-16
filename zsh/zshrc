@@ -5,6 +5,9 @@
 source ~/.aliases
 source ~/dotfiles/zsh/zsh_aliases
 
+# Disable flow control to allow ^s to work as expected
+stty -ixon
+
 # Use vim style editing
 bindkey -v
 

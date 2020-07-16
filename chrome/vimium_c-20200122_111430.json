@@ -1,0 +1,56 @@
+{
+	"name": "Vimium C",
+	"@time": "1/22/2020, 11:14:30 AM",
+	"time": 1579720470462,
+	"environment": {
+		"extension": "1.79.3",
+		"platform": "mac",
+		"chrome": 79
+	},
+	"exclusionRules": [
+		{
+			"pattern": ":https://ballard.amazon.com/",
+			"passKeys": ""
+		},
+		{
+			"pattern": ":https://amazon.ehr.com/",
+			"passKeys": ""
+		},
+		{
+			"pattern": ":https://github.com/",
+			"passKeys": "t y "
+		},
+		{
+			"pattern": ":https://docs.google.com/",
+			"passKeys": ""
+		},
+		{
+			"pattern": ":https://mail.google.com/",
+			"passKeys": ""
+		},
+		{
+			"pattern": ":https://www.youtube.com/",
+			"passKeys": "j k l "
+		},
+		{
+			"pattern": ":https://codepen.io/",
+			"passKeys": ""
+		},
+		{
+			"pattern": ":https://git-aws.internal.justin.tv/",
+			"passKeys": "k t y "
+		},
+		{
+			"pattern": ":https://www.twitch.tv/",
+			"passKeys": ""
+		},
+		{
+			"pattern": ":https://grafana.xarth.tv/",
+			"passKeys": ""
+		},
+		{
+			"pattern": "^https?://localhost\\.twitch\\.tv:8080/",
+			"passKeys": ""
+		}
+	]
+}
