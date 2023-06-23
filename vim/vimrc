@@ -25,22 +25,22 @@ NeoBundle 'ap/vim-css-color'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'fatih/vim-go'
-NeoBundle 'Valloric/YouCompleteMe'
+"NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'junegunn/fzf.vim'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'othree/yajs.vim'
 NeoBundle 'docker/docker', {'rtp': '/contrib/syntax/vim/'}
-NeoBundle 'Shougo/vimproc.vim', {
-\ 'build' : {
-\     'windows' : 'tools\\update-dll-mingw',
-\     'cygwin' : 'make -f make_cygwin.mak',
-\     'mac' : 'make',
-\     'linux' : 'make',
-\     'unix' : 'gmake',
-\    },
-\ }
+"NeoBundle 'Shougo/vimproc.vim', {
+"\ 'build' : {
+"\     'windows' : 'tools\\update-dll-mingw',
+"\     'cygwin' : 'make -f make_cygwin.mak',
+"\     'mac' : 'make',
+"\     'linux' : 'make',
+"\     'unix' : 'gmake',
+"\    },
+"\ }
 NeoBundle 'HerringtonDarkholme/yats.vim'
 NeoBundle 'Quramy/tsuquyomi'
 NeoBundle 'Shougo/unite.vim'
