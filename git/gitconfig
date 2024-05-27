@@ -43,3 +43,15 @@
 	smtpserverport = 587
 	smtpencryption = tls
 	smtpuser = boushley@gmail.com
+[user]
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJtyLWhCZuZMAcCR8siH2zEehGtS9jC7GakVdRju/ql/
+
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+	gpgsign = true
+
