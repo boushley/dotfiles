@@ -26,3 +26,21 @@ export LESS=-R
 
 # Automatically change to directory if you just type directory name
 setopt autocd
+
+if command -v fzf &> /dev/null; then
+  eval "$(fzf --zsh)"
+fi
+
+# Fancy prompt, have to install starship first: https://starship.rs/
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+# Activate Mise, needs to be installed: https://mise.jdx.dev/getting-started.html
+if command -v mise &> /dev/null; then
+  eval "$(mise activate zsh)"
+fi
+
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
