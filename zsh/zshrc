@@ -3,7 +3,6 @@
 
 # Include other configuration
 source ~/.aliases
-source ~/dotfiles/zsh/zsh_aliases
 
 # Disable flow control to allow ^s to work as expected
 stty -ixon
@@ -11,94 +10,19 @@ stty -ixon
 # Use vim style editing
 bindkey -v
 
-# Allow ctrl+r for searching through command history
-bindkey "^R" history-incremental-search-backward
-
-# Allow searching up and down with arrow keys after ctrl+r
-bindkey "^[[A" history-search-backward
-bindkey "^[[B" history-search-forward
-
 # Define the editor for some commands
-export EDITOR="/usr/bin/vim"
-if [ -f "/usr/local/bin/nvim" ]; then
-  export EDITOR="/usr/local/bin/nvim"
-fi
-
-# Directory Colors
-if whence dircolors >/dev/null; then
-  eval `dircolors ~/dotfiles/linux/dircolors.256dark`
-  zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-else
-  export CLICOLOR=1
-  zstyle ':completion:*:default' list-colors ''
-fi
-
-# Setup cert file
-#export SSL_CERT_FILE=/opt/local/etc/openssl/cert.pem
+export EDITOR="nvim"
 
 # Configure the history file location and sizes
 HISTFILE=~/.histfile
-HISTSIZE=5000
-SAVEHIST=5000
+HISTSIZE=500000
+SAVEHIST=500000
+setopt inc_append_history
+setopt share_history
+setopt histignorealldups
 
 # Fixes a problem where git diff with color doesn't show colors
 export LESS=-R 
 
 # Automatically change to directory if you just type directory name
 setopt autocd
-
-
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-
-# Add macports to the path and android adb
-export PATH=/opt/local/bin:/opt/local/sbin:~/npm/bin:/usr/local/share/npm/bin:~/dotfiles/bin:~/bin:$PATH
-
-# Setup a basic Node Path
-export NODE_PATH=/usr/local/lib/jsctags/:/opt/local/lib/node
-
-# Source tmuxinator completion
-source ~/dotfiles/tmux/tmuxinator.zsh
-
-# Auto setup ssh-agent
-. ~/dotfiles/bin/ssh-find-agent.sh
-
-# Add hosts from knownhosts to completion
-local knownhosts
-knownhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
-zstyle ':completion:*:(ssh|scp|sftp):*' hosts $knownhosts
-
-fpath=($HOME/.zsh/func $HOME/dotfiles/zsh/func $fpath)
-typeset -U fpath
-
-# cd to current Finder directory
-# https://github.com/raine/cli-goodies/tree/55ded6829bbfc54761cf6cab4e154e81290ae935#cd-to-current-finder-directory
-cdf() {
-  target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
-  if [ "$target" != "" ]; then
-    cd "$target"; pwd
-  else
-    echo 'No Finder window found' >&2
-  fi
-}
-
-# The following lines were added by compinstall
-
-zstyle ':completion:*' completer _complete _ignored _approximate
-zstyle ':completion:*' file-sort name
-zstyle ':completion:*' users off
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' ignore-parents parent pwd
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-suffixes true
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**'
-zstyle ':completion:*' max-errors 1
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' preserve-prefix '//[^/]##/'
-zstyle ':completion:*' prompt 'Found %e Errors'
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle :compinstall filename '/Users/boushley/.zshrc'
-
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall

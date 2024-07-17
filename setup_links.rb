@@ -10,13 +10,12 @@ files_to_link = {
 
 	"~/dotfiles/ffmpeg" => "~/.ffmpeg",
 
+	"~/dotfiles/nvim" => "~/.config/nvim",
 	"~/dotfiles/vim/vim" => "~/.vim",
 	"~/dotfiles/vim/vimrc" => "~/.vimrc",
-	"~/dotfiles/nvim/init.vim" => "~/.config/nvim/init.vim",
-	"~/dotfiles/linux/i3" => "~/.i3",
 }
 
-FileUtils.mkdir_p("~/.config/nvim")
+FileUtils.mkdir_p("~/.config")
 
 
 files_to_link.each do |source, target|
@@ -26,7 +25,7 @@ files_to_link.each do |source, target|
 	if File.symlink? target
 		puts "Removing symlink at #{target}"
 		FileUtils.rm target
-	elsif File.exists? target
+	elsif File.exist? target
 		puts "Skipping #{target} since a file already exists there"
 		next
 	end
@@ -35,14 +34,14 @@ files_to_link.each do |source, target|
 end
 
 files_to_create = {
-	 "~/.zshrc" => "source ~/dotfiles/zsh/oh_my_zsh_rc\n\n# Customize the path as you need\nexport PATH=$PATH\n\n# Import ssh identities for this machine\nssh-add ~/.ssh/id_rsa",
+	 "~/.zshrc" => "source ~/dotfiles/zsh/zshrc\n\n# Customize the path as you need\nexport PATH=$PATH\n\n# Import ssh identities for this machine\nssh-add ~/.ssh/id_rsa",
    "~/.aliases" => "source ~/dotfiles/zsh/aliases"
 }
 
 files_to_create.each do |target, content|
 	target = File.expand_path(target)
 
-	if File.exists? target
+	if File.exist? target
 		puts "Skipping #{target} since a file already exists there"
 		next
 	end

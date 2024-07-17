@@ -1,5 +1,9 @@
 # Aliases in this file are bash and zsh compatible
 
+alias -g ...='cd ../..'
+alias -g ....='cd ../../..'
+alias -g .....='cd ../../../..'
+
 # Autojump with fzf
 alias z='cd $(cat ~/Library/autojump/autojump.txt | sort -nr | awk "{print \$2}" | fzf +s || pwd)'
 
@@ -23,17 +27,17 @@ alias dockerclean="dockercleancontainers && dockercleanimages"
 alias lsg='ll | grep'
 
 # Alias Editing
-alias ae='vim ~/.aliases' #alias edit
+alias ae='nvim ~/.aliases' #alias edit
 alias ar='source ~/.aliases'  #alias reload
 
 # vimrc editing
-alias ve='vim ~/.vimrc'
+alias ve='nvim ~/.config/nvim/init.lua'
 
 # edit todos
-alias todo='mvim ~/Dropbox/documents/aaron/todos/todo.txt'
+alias todo='nvim ~/Dropbox/documents/aaron/todos/todo.txt'
 
 # zsh profile editing
-alias ze='vim ~/.zshrc'
+alias ze='nvim ~/.zshrc'
 alias zr='source ~/.zshrc'
 
 # Git Aliases
