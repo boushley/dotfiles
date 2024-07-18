@@ -8,6 +8,8 @@ files_to_link = {
 
 	"~/dotfiles/tmux/tmux.conf" => "~/.tmux.conf",
 
+	"~/dotfiles/zsh/starship.toml" => "~/.config/starship.toml",
+
 	"~/dotfiles/ffmpeg" => "~/.ffmpeg",
 
 	"~/dotfiles/nvim" => "~/.config/nvim",
