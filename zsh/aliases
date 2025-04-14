@@ -23,6 +23,9 @@ alias dockercleancontainers="docker ps -a --no-trunc| grep 'Exit' | awk '{print 
 alias dockercleanimages="docker images -a --no-trunc | grep '<none>' | awk '{print \$3}' | xargs -L 1 -r docker rmi"
 alias dockerclean="dockercleancontainers && dockercleanimages"
 
+# MacOS Helpers
+alias release-quarantine="xattr -dr com.apple.quarantine "
+
 # show me files matching "ls grep"
 alias lsg='ll | grep'
 
