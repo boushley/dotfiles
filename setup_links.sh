@@ -36,10 +36,10 @@ done
 
 # Files to create with content
 declare -A files_to_create=(
-    ["~/.zshrc"]="source ~/dotfiles/zsh/zshrc
-
-# Customize the path as you need
+    ["~/.zshrc"]="# Customize the path as you need
 export PATH=\$PATH:$HOME/bin
+
+source ~/dotfiles/zsh/zshrc
 
 # Import ssh identities for this machine
 ssh-add ~/.ssh/id_rsa"
