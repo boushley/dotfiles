@@ -113,7 +113,7 @@ alias screen='TERM=screen screen'
 alias cl='clear'
 
 # Zippin
-alias gz='tar -zcvf'
+# alias gz='tar -zcvf'
 
 # Ruby
 alias c='script/console --irb=pry'
