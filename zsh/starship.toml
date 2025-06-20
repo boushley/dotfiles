@@ -1,4 +1,5 @@
 format = """
+$hostname\
 $directory\
 [](fg:#769ff0 bg:#394260)\
 $git_branch\
@@ -12,6 +13,11 @@ $php\
 $cmd_duration\
 [ ](fg:#1d2230)\
 \n$character"""
+
+[hostname]
+ssh_only = true
+format = '[$hostname](bold red) '
+
 
 [directory]
 style = "fg:#e3e5e5 bg:#769ff0"
