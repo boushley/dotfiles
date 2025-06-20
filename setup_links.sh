@@ -5,7 +5,6 @@ mkdir -p ~/.config
 
 # Files to symlink (source => target)
 declare -A files_to_link=(
-    ["~/dotfiles/git/gitconfig"]="~/.gitconfig"
     ["~/dotfiles/git/gitignore_global"]="~/.gitignore_global"
     ["~/dotfiles/tmux/tmux.conf"]="~/.tmux.conf"
     ["~/dotfiles/zsh/starship.toml"]="~/.config/starship.toml"
@@ -36,6 +35,8 @@ done
 
 # Files to create with content
 declare -A files_to_create=(
+    ["~/.gitconfig"]="[include]
+    path = ~/dotfiles/git/gitconfig"
     ["~/.zshrc"]="# Customize the path as you need
 export PATH=\$PATH:$HOME/bin
 
@@ -51,6 +52,12 @@ for target in "${!files_to_create[@]}"; do
     content="${files_to_create[$target]}"
     target_expanded="${target/#\~/$HOME}"
     
+    # If switching .gitconfig from a symlink to a file
+    if [[ "$target" == "~/.gitconfig" && -L "$target_expanded" ]]; then
+        echo "Removing symlink at $target_expanded to replace with file"
+        rm "$target_expanded"
+    fi
+
     if [[ -e "$target_expanded" ]]; then
         echo "Skipping $target_expanded since a file already exists there"
         continue

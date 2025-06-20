@@ -119,7 +119,7 @@ echo "----------------------------------------"
 ARCH=$(uname -m)
 case $ARCH in
 x86_64)
-  APPIMAGE_FILENAME="nvim-linux64.appimage"
+  APPIMAGE_FILENAME="nvim-linux-x86_64.appimage"
   ;;
 aarch64 | arm64)
   APPIMAGE_FILENAME="nvim-linux-arm64.appimage"
