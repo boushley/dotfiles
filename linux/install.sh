@@ -22,7 +22,14 @@ sudo apt-get install -y \
   unzip \
   luarocks \
   zsh \
-  mesa-utils
+  mesa-utils \
+  golang \
+  python3 \
+  python3-pip \
+  clangd \
+  ripgrep \
+  nodejs \
+  npm
 echo "Dependencies installed."
 
 echo "----------------------------------------"
