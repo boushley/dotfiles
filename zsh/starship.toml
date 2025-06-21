@@ -1,4 +1,5 @@
 format = """
+$container\
 $hostname\
 $directory\
 [](fg:#769ff0 bg:#394260)\
@@ -18,6 +19,10 @@ $cmd_duration\
 ssh_only = true
 format = '[$hostname](bold red) '
 
+[container]
+symbol = ""
+format = "[$name]($style) $symbol "
+style = "red bold"
 
 [directory]
 style = "fg:#e3e5e5 bg:#769ff0"
