@@ -21,6 +21,9 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+-- Sometimes this is helpful, but there are also plenty of times it's frustrating
+-- vim.opt.foldmethod = 'indent'
+
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
