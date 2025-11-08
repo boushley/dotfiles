@@ -1,67 +1,64 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Create ~/.config directory if it doesn't exist
-mkdir -p ~/.config
+mkdir -p $HOME/.config
 
 # Files to symlink (source => target)
-declare -A files_to_link=(
-    ["~/dotfiles/git/gitignore_global"]="~/.gitignore_global"
-    ["~/dotfiles/tmux/tmux.conf"]="~/.tmux.conf"
-    ["~/dotfiles/zsh/starship.toml"]="~/.config/starship.toml"
-    ["~/dotfiles/ffmpeg"]="~/.ffmpeg"
-    ["~/dotfiles/nvim"]="~/.config/nvim"
-    ["~/dotfiles/vim/vim"]="~/.vim"
-    ["~/dotfiles/vim/vimrc"]="~/.vimrc"
+typeset -A files_to_link
+files_to_link=(
+    ["$HOME/dotfiles/git/gitignore_global"]="$HOME/.gitignore_global"
+    ["$HOME/dotfiles/tmux/tmux.conf"]="$HOME/.tmux.conf"
+    ["$HOME/dotfiles/zsh/starship.toml"]="$HOME/.config/starship.toml"
+    ["$HOME/dotfiles/ffmpeg"]="$HOME/.ffmpeg"
+    ["$HOME/dotfiles/nvim"]="$HOME/.config/nvim"
+    ["$HOME/dotfiles/vim/vim"]="$HOME/.vim"
+    ["$HOME/dotfiles/vim/vimrc"]="$HOME/.vimrc"
 )
 
 # Create symlinks
-for source in "${!files_to_link[@]}"; do
+for source in ${(k)files_to_link}; do
     target="${files_to_link[$source]}"
     
-    # Expand tilde paths
-    source_expanded="${source/#\~/$HOME}"
-    target_expanded="${target/#\~/$HOME}"
-    
-    if [[ -L "$target_expanded" ]]; then
-        echo "Removing symlink at $target_expanded"
-        rm "$target_expanded"
-    elif [[ -e "$target_expanded" ]]; then
-        echo "Skipping $target_expanded since a file already exists there"
+    if [[ -L "$target" ]]; then
+        echo "Removing symlink at $target"
+        rm "$target"
+    elif [[ -e "$target" ]]; then
+        echo "Skipping $target since a file already exists there"
         continue
     fi
     
-    ln -s "$source_expanded" "$target_expanded"
+    ln -s "$source" "$target"
 done
 
 # Files to create with content
-declare -A files_to_create=(
-    ["~/.gitconfig"]="[include]
-    path = ~/dotfiles/git/gitconfig"
-    ["~/.zshrc"]="# Customize the path as you need
-export PATH=\$PATH:$HOME/bin
+typeset -A files_to_create
+files_to_create=(
+    ["$HOME/.gitconfig"]="[include]
+    path = $HOME/dotfiles/git/gitconfig"
+    ["$HOME/.zshrc"]="# Customize the path as you need
+export PATH=\$PATH:\$HOME/bin
 
 source ~/dotfiles/zsh/zshrc
 
 # Import ssh identities for this machine
-ssh-add ~/.ssh/id_rsa"
-    ["~/.aliases"]="source ~/dotfiles/zsh/aliases"
+ssh-add \$HOME/.ssh/id_rsa"
+    ["$HOME/.aliases"]="source \$HOME/dotfiles/zsh/aliases"
 )
 
 # Create files with content
-for target in "${!files_to_create[@]}"; do
+for target in ${(k)files_to_create}; do
     content="${files_to_create[$target]}"
-    target_expanded="${target/#\~/$HOME}"
     
     # If switching .gitconfig from a symlink to a file
-    if [[ "$target" == "~/.gitconfig" && -L "$target_expanded" ]]; then
-        echo "Removing symlink at $target_expanded to replace with file"
-        rm "$target_expanded"
+    if [[ "$target" == "$HOME/.gitconfig" && -L "$target" ]]; then
+        echo "Removing symlink at $target to replace with file"
+        rm "$target"
     fi
 
-    if [[ -e "$target_expanded" ]]; then
-        echo "Skipping $target_expanded since a file already exists there"
+    if [[ -e "$target" ]]; then
+        echo "Skipping $target since a file already exists there"
         continue
     fi
     
-    echo "$content" > "$target_expanded"
+    echo "$content" > "$target"
 done 
