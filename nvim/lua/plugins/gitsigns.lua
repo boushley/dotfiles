@@ -11,4 +11,12 @@ return {
       changedelete = { text = '~' },
     },
   },
+  keys = {
+    {
+      "<leader>gb",
+      function () require('gitsigns').blame() end,
+      desc = "Toggle git blame",
+      mode = { "n" }
+    },
+  },
 }
