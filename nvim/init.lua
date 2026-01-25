@@ -3,6 +3,7 @@ require('config.options')
 require('config.keymaps')
 require('config.auto-commands')
 require('config.directories')
+require('config.processing')
 
 -- This is useful on some systems where OSC52 works well, otherwise the universal-clipboard plugin is nice
 require('config.clipboard')

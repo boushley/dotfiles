@@ -4,6 +4,8 @@ alias -g ...='cd ../..'
 alias -g ....='cd ../../..'
 alias -g .....='cd ../../../..'
 
+alias http='python -m http.server'
+
 # Autojump with fzf
 alias z='cd $(cat ~/Library/autojump/autojump.txt | sort -nr | awk "{print \$2}" | fzf +s || pwd)'
 
