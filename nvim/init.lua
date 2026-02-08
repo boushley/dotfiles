@@ -15,3 +15,5 @@ require('lazy').setup('plugins')
 -- Override plugin that sets clipboard to unnamedplus since I prefer the default behavior where
 -- standard deletes, etc in vim overwrite the system buffer.
 vim.opt.clipboard = ""
+
+require('config.theme')
