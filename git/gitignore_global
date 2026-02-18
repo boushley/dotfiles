@@ -8,3 +8,5 @@
 .bundle
 .sdkmanrc
 .mvn
+
+**/*/.claude/settings.local.json
