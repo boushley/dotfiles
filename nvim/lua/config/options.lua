@@ -39,3 +39,8 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- Smooth scrolling by screen line for wrapped text (Neovim 0.10+)
+vim.opt.smoothscroll = true
+-- Show partial last line instead of @@@
+vim.opt.display:append('lastline')
+

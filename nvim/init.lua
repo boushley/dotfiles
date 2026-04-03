@@ -9,6 +9,7 @@ require('config.processing')
 require('config.clipboard')
 require('config.lazy')
 require('config.formatting')
+require('config.prose')
 
 require('lazy').setup('plugins')
 
