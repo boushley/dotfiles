@@ -45,6 +45,22 @@ alias todo='nvim ~/Dropbox/documents/aaron/todos/todo.txt'
 alias ze='nvim ~/.zshrc'
 alias zr='source ~/.zshrc'
 
+# Repo Analysis
+alias repo-age="git log --reverse --format='%cs %h %s' | head -1"
+alias repo-contributors="git shortlog -sn --all"
+alias repo-commonly-changed="git log --name-only --format='' | sort | uniq -c | sort -nr | head -50"
+
+# brew install scc
+alias repo-loc='scc .'
+alias repo-loc-dry='scc --dryness .'
+# SCC has some nice complexity info, but tokei is a little cleaner looking output
+# brew install tokei
+alias loc-clean='tokei --sort code .'
+# brew install tree
+alias repo-layout="tree -L 2 -a -I '.git|node_modules|dist|build'"
+# brew install dust
+alias repo-du='dust -d 2 .'
+
 # Git Aliases
 alias gclean='git clean -e ".idea" -dfx'
 alias gco='git checkout'
