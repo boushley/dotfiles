@@ -1,12 +1,14 @@
 -- Highlight, edit, and navigate code
 return {
   'nvim-treesitter/nvim-treesitter',
+  branch = 'main',
   build = ':TSUpdate',
   opts = {
     ensure_installed = {
       'bash',
       'c',
       'diff',
+      'go',
       'html',
       'javascript',
       'lua',
@@ -16,7 +18,7 @@ return {
       'tsx',
       'typescript',
       'vim',
-      'vimdoc'
+      'vimdoc',
     },
     -- Autoinstall languages that are not installed
     auto_install = true,
@@ -32,10 +34,31 @@ return {
   config = function(_, opts)
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 
-    -- Prefer git instead of curl in order to improve connectivity in some environments
-    require('nvim-treesitter.install').prefer_git = true
-    ---@diagnostic disable-next-line: missing-fields
-    require('nvim-treesitter.configs').setup(opts)
+    local treesitter = require('nvim-treesitter')
+    treesitter.setup()
+
+    vim.api.nvim_create_autocmd('FileType', {
+      group = vim.api.nvim_create_augroup('custom-treesitter', { clear = true }),
+      callback = function(args)
+        local filetype = vim.bo[args.buf].filetype
+        local lang = vim.treesitter.language.get_lang(filetype)
+        if not lang then
+          return
+        end
+
+        local ok = pcall(vim.treesitter.start, args.buf, lang)
+        if not ok then
+          if opts.auto_install then
+            pcall(treesitter.install, { lang })
+          end
+          return
+        end
+
+        if opts.indent.enable and not vim.tbl_contains(opts.indent.disable or {}, filetype) then
+          vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+      end,
+    })
 
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
