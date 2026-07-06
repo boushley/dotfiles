@@ -11,6 +11,7 @@ files_to_link=(
     ["$HOME/dotfiles/zsh/starship.toml"]="$HOME/.config/starship.toml"
     ["$HOME/dotfiles/ffmpeg"]="$HOME/.ffmpeg"
     ["$HOME/dotfiles/nvim"]="$HOME/.config/nvim"
+    ["$HOME/dotfiles/ghostty"]="$HOME/.config/ghostty"
     ["$HOME/dotfiles/vim/vim"]="$HOME/.vim"
     ["$HOME/dotfiles/vim/vimrc"]="$HOME/.vimrc"
     ["$HOME/dotfiles/elixir/iex.exs"]="$HOME/.iex.exs"
