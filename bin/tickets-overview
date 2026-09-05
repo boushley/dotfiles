@@ -1,0 +1,364 @@
+#!/usr/bin/env python3
+
+"""Show a compact overview of local Markdown tickets."""
+
+from __future__ import annotations
+
+import argparse
+import os
+import re
+import sys
+from collections import defaultdict
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Iterable, Optional
+
+
+# Edit this set when the tracker gains another status that means "closed".
+# Every status not listed here is treated as open.
+CLOSED_STATUSES = {
+    "resolved",
+    "closed",
+    "complete",
+    "completed",
+    "abandoned",
+}
+
+DEFAULT_TRACKER_DIRECTORIES = (
+    Path("docs/tracking"),
+    Path("docs/tracker"),
+)
+
+TICKET_FILENAME = re.compile(r"^(\d+)-.+\.md$", re.IGNORECASE)
+TITLE_LINE = re.compile(r"^#(?!#)\s+(.+?)\s*$")
+COMMENTS_HEADING = re.compile(r"^##\s+Comments\b", re.IGNORECASE)
+
+RESET = "\033[0m"
+DIM = "\033[2m"
+GREEN = "\033[32m"
+YELLOW = "\033[33m"
+CYAN = "\033[36m"
+
+
+@dataclass
+class Ticket:
+    effort: str
+    number: str
+    path: Path
+    title: str
+    status: str
+    blockers: list[str] = field(default_factory=list)
+    invalid: list[str] = field(default_factory=list)
+    bad_blocker_reference: bool = False
+    missing_blockers: list[str] = field(default_factory=list)
+    availability: str = "ready"
+
+    @property
+    def closed(self) -> bool:
+        return self.status in CLOSED_STATUSES
+
+
+def ticket_number(path: Path) -> Optional[str]:
+    match = TICKET_FILENAME.match(path.name)
+    return match.group(1) if match else None
+
+
+def ticket_files(directory: Path) -> list[Path]:
+    try:
+        entries = directory.iterdir()
+        return sorted(
+            (path for path in entries if path.is_file() and ticket_number(path)),
+            key=lambda path: (int(ticket_number(path) or 0), path.name.casefold()),
+        )
+    except OSError:
+        return []
+
+
+def add_paths(groups: dict[str, list[Path]], effort: str, paths: Iterable[Path]) -> None:
+    known = set(groups[effort])
+    for path in paths:
+        if path not in known:
+            groups[effort].append(path)
+            known.add(path)
+
+
+def find_effort_paths(root: Path) -> dict[str, list[Path]]:
+    """Find only the agreed direct, issues/, and effort/issues/ layouts."""
+    groups: dict[str, list[Path]] = defaultdict(list)
+
+    direct = ticket_files(root)
+    if direct:
+        effort = root.parent.name if root.name == "issues" else root.name
+        add_paths(groups, effort, direct)
+
+    issues = root / "issues"
+    if root.name != "issues" and issues.is_dir() and not issues.is_symlink():
+        add_paths(groups, root.name, ticket_files(issues))
+
+    try:
+        children = sorted(root.iterdir(), key=lambda path: path.name.casefold())
+    except OSError:
+        children = []
+
+    for child in children:
+        if not child.is_dir() or child.is_symlink() or child.name == "issues":
+            continue
+        child_issues = child / "issues"
+        if child_issues.is_dir() and not child_issues.is_symlink():
+            add_paths(groups, child.name, ticket_files(child_issues))
+
+    return {effort: paths for effort, paths in groups.items() if paths}
+
+
+def field_pattern(name: str) -> re.Pattern[str]:
+    return re.compile(
+        rf"^\s*(?:\*\*)?{re.escape(name)}(?:\*\*)?\s*:\s*"
+        rf"(?:\*\*)?\s*(.*?)\s*$",
+        re.IGNORECASE,
+    )
+
+
+def field_value(lines: list[str], name: str) -> Optional[str]:
+    pattern = field_pattern(name)
+    for line in lines:
+        if COMMENTS_HEADING.match(line):
+            break
+        match = pattern.match(line)
+        if match:
+            return match.group(1).strip().strip("*`").strip()
+    return None
+
+
+def title_from_lines(lines: list[str]) -> Optional[str]:
+    for line in lines:
+        match = TITLE_LINE.match(line)
+        if not match:
+            continue
+        title = match.group(1).rstrip("#").strip()
+        return re.sub(r"^\d+\s*:\s*", "", title).strip() or None
+    return None
+
+
+def title_from_filename(path: Path, number: str) -> str:
+    slug = path.stem[len(number) :].lstrip("-")
+    title = re.sub(r"[-_]+", " ", slug).strip()
+    return title[:1].upper() + title[1:] if title else path.stem
+
+
+def parse_blockers(value: Optional[str]) -> tuple[list[str], bool]:
+    if value is None or not value.strip():
+        return [], False
+    if value.strip().casefold().startswith("none"):
+        return [], False
+
+    blockers: list[str] = []
+    invalid = False
+    for part in value.split(","):
+        match = re.match(r"\s*#?(\d+)\b", part)
+        if match:
+            blockers.append(match.group(1))
+        elif part.strip():
+            invalid = True
+    return blockers, invalid
+
+
+def parse_ticket(effort: str, path: Path) -> Ticket:
+    number = ticket_number(path)
+    if number is None:
+        raise ValueError(f"not a ticket filename: {path}")
+
+    try:
+        lines = path.read_text(encoding="utf-8").splitlines()
+    except (OSError, UnicodeError):
+        return Ticket(
+            effort=effort,
+            number=number,
+            path=path,
+            title=title_from_filename(path, number),
+            status="unknown",
+            invalid=["unreadable file"],
+        )
+
+    invalid: list[str] = []
+    title = title_from_lines(lines)
+    if title is None:
+        title = title_from_filename(path, number)
+        invalid.append("missing title")
+
+    raw_status = field_value(lines, "Status")
+    if raw_status is None or not raw_status.strip():
+        status = "unknown"
+        invalid.append("missing status")
+    else:
+        status = raw_status.casefold()
+
+    blockers, bad_blocker_reference = parse_blockers(field_value(lines, "Blocked by"))
+    if bad_blocker_reference:
+        invalid.append("bad blocker reference")
+
+    return Ticket(
+        effort=effort,
+        number=number,
+        path=path,
+        title=title,
+        status=status,
+        blockers=blockers,
+        invalid=invalid,
+        bad_blocker_reference=bad_blocker_reference,
+    )
+
+
+def resolve_effort(tickets: list[Ticket]) -> None:
+    by_number: dict[int, list[Ticket]] = defaultdict(list)
+    for ticket in tickets:
+        by_number[int(ticket.number)].append(ticket)
+
+    for matches in by_number.values():
+        if len(matches) > 1:
+            for ticket in matches:
+                ticket.invalid.append("duplicate number")
+
+    for ticket in tickets:
+        blocked = ticket.bad_blocker_reference
+        for blocker in ticket.blockers:
+            matches = by_number.get(int(blocker), [])
+            if not matches:
+                ticket.missing_blockers.append(blocker)
+                blocked = True
+            elif any(not match.closed for match in matches):
+                blocked = True
+
+        if ticket.closed:
+            ticket.availability = "closed"
+        elif blocked:
+            ticket.availability = "blocked"
+        else:
+            ticket.availability = "ready"
+
+
+def load_efforts(root: Path) -> dict[str, list[Ticket]]:
+    efforts: dict[str, list[Ticket]] = {}
+    for effort, paths in find_effort_paths(root).items():
+        tickets = [parse_ticket(effort, path) for path in paths]
+        resolve_effort(tickets)
+        efforts[effort] = tickets
+    return efforts
+
+
+def select_root(explicit: Optional[str], current: Path) -> tuple[Optional[Path], Optional[str]]:
+    if explicit is not None:
+        root = Path(explicit).expanduser()
+        if not root.exists():
+            return None, f"directory does not exist: {root}"
+        if not root.is_dir():
+            return None, f"not a directory: {root}"
+        return root.resolve(), None
+
+    for relative_path in DEFAULT_TRACKER_DIRECTORIES:
+        candidate = current / relative_path
+        if candidate.is_dir() and not candidate.is_symlink():
+            return candidate.resolve(), None
+    if find_effort_paths(current):
+        return current.resolve(), None
+    return None, "no Markdown ticket directory found"
+
+
+def counts(tickets: Iterable[Ticket]) -> tuple[int, int, int, int]:
+    ticket_list = list(tickets)
+    closed = sum(ticket.closed for ticket in ticket_list)
+    ready = sum(not ticket.closed and ticket.availability == "ready" for ticket in ticket_list)
+    blocked = sum(not ticket.closed and ticket.availability == "blocked" for ticket in ticket_list)
+    return ready + blocked, ready, blocked, closed
+
+
+def summary(label: str, tickets: Iterable[Ticket]) -> str:
+    opened, ready, blocked, closed = counts(tickets)
+    return (
+        f"{label}: {opened} open ({ready} ready, {blocked} blocked), "
+        f"{closed} closed"
+    )
+
+
+def paint(value: str, color: str, enabled: bool) -> str:
+    return f"{color}{value}{RESET}" if enabled else value
+
+
+def ticket_sort_key(ticket: Ticket) -> tuple[int, int, str]:
+    order = {"ready": 0, "blocked": 1, "closed": 2}
+    return order[ticket.availability], int(ticket.number), ticket.path.name.casefold()
+
+
+def render(root: Path, efforts: dict[str, list[Ticket]], show_all: bool, color: bool) -> str:
+    all_tickets = [ticket for tickets in efforts.values() for ticket in tickets]
+    displayed = [ticket for ticket in all_tickets if show_all or not ticket.closed]
+    number_width = max((len(ticket.number) for ticket in displayed), default=2)
+    availability_width = max((len(ticket.availability) for ticket in displayed), default=7)
+    status_width = max((len(ticket.status) for ticket in displayed), default=6)
+
+    lines = [f"Tickets: {root}", summary("All efforts", all_tickets)]
+
+    for effort in sorted(efforts, key=str.casefold):
+        tickets = efforts[effort]
+        lines.extend(["", summary(effort, tickets)])
+        for ticket in sorted(tickets, key=ticket_sort_key):
+            if ticket.closed and not show_all:
+                continue
+
+            availability = ticket.availability.ljust(availability_width)
+            status = ticket.status.ljust(status_width)
+            availability_color = {
+                "ready": GREEN,
+                "blocked": YELLOW,
+                "closed": DIM,
+            }[ticket.availability]
+            status_color = DIM if ticket.closed else (YELLOW if ticket.status == "claimed" else CYAN)
+            line = (
+                f"  {ticket.number:<{number_width}}  "
+                f"{paint(availability, availability_color, color)}  "
+                f"{paint(status, status_color, color)}  {ticket.title}"
+            )
+
+            notes = []
+            if ticket.invalid:
+                notes.append(f"invalid: {', '.join(dict.fromkeys(ticket.invalid))}")
+            notes.extend(f"missing blocker {number}" for number in ticket.missing_blockers)
+            if notes:
+                line += paint(f" [{'; '.join(notes)}]", DIM, color)
+            lines.append(line)
+
+    if not displayed:
+        lines.extend(["", "No tickets." if show_all and not all_tickets else "No open tickets."])
+
+    return "\n".join(lines)
+
+
+def argument_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="tickets-overview",
+        description="Show the status of local Markdown tickets.",
+    )
+    parser.add_argument("directory", nargs="?", metavar="DIRECTORY")
+    parser.add_argument(
+        "-a",
+        "--all",
+        action="store_true",
+        help="include closed tickets in the listing",
+    )
+    return parser
+
+
+def main(argv: Optional[list[str]] = None) -> int:
+    args = argument_parser().parse_args(argv)
+    root, error = select_root(args.directory, Path.cwd())
+    if error is not None or root is None:
+        print(f"tickets-overview: {error}", file=sys.stderr)
+        return 1
+
+    efforts = load_efforts(root)
+    color = sys.stdout.isatty() and "NO_COLOR" not in os.environ
+    print(render(root, efforts, args.all, color))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

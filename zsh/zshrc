@@ -1,6 +1,8 @@
 # Use this to debug any slowness or problems like that
 # setopt XTRACE VERBOSE
 
+export PATH=$PATH:$HOME/dotfiles/bin
+
 # Include other configuration
 source ~/.aliases
 
