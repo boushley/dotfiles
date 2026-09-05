@@ -26,9 +26,11 @@ Look for opportunities to prefactor the code to make the implementation easier. 
 
 Break the work into **tracer bullet** tickets.
 
+Read the test-value gate in [`../tdd/tests.md`](../tdd/tests.md). For each ticket, choose evidence that fits the risk: a retained behavior test, tool verification, or inspection. Tickets describe observable outcomes; they do not require a test merely to represent every implementation layer or acceptance criterion.
+
 <vertical-slice-rules>
 
-- Each slice cuts a narrow but COMPLETE path through every layer (schema, API, UI, tests): vertical, NOT a horizontal slice of one layer
+- Each slice cuts a narrow but COMPLETE path through every implementation layer the behavior needs (for example schema, API, and UI): vertical, NOT a horizontal slice of one layer
 - A completed slice is demoable or verifiable on its own
 - Each slice is sized to fit in a single fresh context window
 - Any prefactoring should be done first
@@ -46,6 +48,7 @@ Present the proposed breakdown as a numbered list. For each ticket, show:
 - **Title**: short descriptive name
 - **Blocked by**: which other tickets (if any) must complete first
 - **What it delivers**: the end-to-end behaviour this ticket makes work
+- **How to verify**: the public behavior test, tool verification, or declaration to inspect
 
 Ask the user:
 
@@ -54,6 +57,8 @@ Ask the user:
 - Should any tickets be merged or split further?
 
 Iterate until the user approves the breakdown.
+
+Approval confirms each ticket's How to verify choice, including any proposed public test seam.
 
 ### 5. Publish the tickets to the configured tracker
 
@@ -74,6 +79,8 @@ Do NOT close or modify any parent issue.
 
 **Blocked by:** the numbers/titles of the tickets that gate this one, or "None (can start immediately)".
 
+**How to verify:** the observable behavior test, tool verification, or declaration inspection that establishes the acceptance criteria.
+
 **Status:** ready-for-agent
 
 - [ ] Acceptance criterion 1
@@ -90,6 +97,10 @@ A reference to the parent issue on the tracker (if the source was an existing is
 ## What to build
 
 The end-to-end behaviour this ticket makes work, from the user's perspective, not layer-by-layer implementation.
+
+## How to verify
+
+The observable behavior test, tool verification, or declaration inspection that establishes the acceptance criteria.
 
 ## Acceptance criteria
 
