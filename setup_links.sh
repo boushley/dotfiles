@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-# Create ~/.config directory if it doesn't exist
 mkdir -p $HOME/.config
+mkdir -p $HOME/.agents
 
 # Files to symlink (source => target)
 typeset -A files_to_link
@@ -15,6 +15,7 @@ files_to_link=(
     ["$HOME/dotfiles/vim/vim"]="$HOME/.vim"
     ["$HOME/dotfiles/vim/vimrc"]="$HOME/.vimrc"
     ["$HOME/dotfiles/elixir/iex.exs"]="$HOME/.iex.exs"
+    ["$HOME/dotfiles/agent-skills"]="$HOME/.agents/skills"
 )
 
 # Create symlinks
