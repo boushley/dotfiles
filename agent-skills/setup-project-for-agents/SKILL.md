@@ -1,10 +1,10 @@
 ---
-name: setup-matt-pocock-skills
-description: "Configure this repo for the engineering skills: set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills."
+name: setup-project-for-agents
+description: "Configure this repo for my engineering skills: set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills."
 disable-model-invocation: true
 ---
 
-# Setup Matt Pocock's Skills
+# Setup This Project to Work with my skills
 
 Scaffold the per-repo configuration that the engineering skills assume:
 
