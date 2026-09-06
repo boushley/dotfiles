@@ -1,14 +1,14 @@
 ---
 name: setup-project-for-agents
-description: "Configure this repo for my engineering skills: set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills."
+description: "Configure this repo for my skills: set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of my other skills."
 disable-model-invocation: true
 ---
 
-# Setup This Project to Work with my skills
+# Set up this project for my skills
 
-Scaffold the per-repo configuration that the engineering skills assume:
+Create the per-repo configuration that my skills assume:
 
-- **Issue tracker**: where issues live (GitHub by default; local markdown is also supported out of the box)
+- **Issue tracker**: where issues live (Forgejo by default)
 - **Triage labels**: the strings used for the five canonical triage roles
 - **Domain docs**: where `CONTEXT.md` and ADRs live, and the consumer rules for reading them
 
@@ -20,33 +20,52 @@ This is a prompt-driven skill, not a deterministic script. Explore, present what
 
 Look at the current repo to understand its starting state. Read whatever exists; don't assume:
 
-- `git remote -v` and `.git/config`: is this a GitHub repo? Which one?
+- `git remote -v`: does `forge` or `origin` point to `forgejo.boushley.cc`? Record its owner and repository name. Prefer `forge` when both qualify.
+- The local repository name from the Git worktree root. This is the candidate name when the repo has no Forgejo remote.
 - `AGENTS.md` and `CLAUDE.md` at the repo root: does either exist? Is there already an `## Agent skills` section in either?
 - `CONTEXT.md` and `CONTEXT-MAP.md` at the repo root
 - `docs/adr/` and any `src/*/docs/adr/` directories
 - `docs/agents/`: does this skill's prior output already exist?
-- `.scratch/`: a sign that a local-markdown issue tracker convention is already in use
+- `docs/tracker/`: a sign that the local-markdown issue tracker convention is already in use
 - Is the `triage` skill installed? (a `triage` skill folder alongside this one, or `triage` in your available skills.) This decides whether Section B runs at all.
 - Monorepo signals: a `pnpm-workspace.yaml`, a `workspaces` field in `package.json`, or a populated `packages/*` with its own `src/`. These are present only in a genuinely large multi-package repo; their absence means single-context, which is almost every repo.
 
 ### 2. Present findings and ask
 
-Summarise what's present and what's missing. Then take the sections in order. One section, one answer, then the next.
+Summarise what's present and what's missing. Then take the sections in order, finishing each section before starting the next.
 
 Lead each section with the recommended answer so the user can accept it in a word. Give a one-line explainer only when the choice genuinely branches; skip the section entirely when exploration already settled it (Section B when `triage` isn't installed, Section C when there's no monorepo).
 
 **Section A: Issue tracker.**
 
-> Explainer: The "issue tracker" is where issues live for this repo. Skills like `to-tickets`, `triage`, and `to-spec` read from and write to it. They need to know whether to call `gh issue create`, write a markdown file under `.scratch/`, or follow some other workflow you describe. Pick the place you actually track work for this repo.
+> Explainer: The "issue tracker" is where issues live for this repo. Skills like `to-tickets`, `triage`, and `to-spec` read from and write to it. Pick the place you actually track work for this repo.
 
-Default posture: these skills were designed for GitHub. If a `git remote` points at GitHub, propose that. If a `git remote` points at GitLab (`gitlab.com` or a self-hosted host), propose GitLab. Otherwise (or if the user prefers), offer:
+An existing `docs/agents/issue-tracker.md` records an explicit choice. Recommend keeping it unless the user asked to switch trackers or restart setup. If the preserved choice is Forgejo and neither qualifying remote exists, continue with the lookup below using its repository name as the candidate.
 
+For a repo without an explicit choice, default to **Forgejo** on `forgejo.boushley.cc`, even when another remote points to GitHub or GitLab. If `forge` or `origin` already points there, derive the exact `<owner>/<repo>` from that remote and propose it.
+
+When neither remote points there, ask:
+
+> Use Forgejo for this repo? I can look for a repository named `<candidate-name>` on `forgejo.boushley.cc` and create it if none exists. (recommended: **yes**)
+
+On **yes**:
+
+1. Call `mcp__forgejo__search_repos` with the candidate name. Follow pagination until every case-insensitive exact-name match is known; ignore partial matches.
+2. If one exact match exists, propose that `<owner>/<repo>`. If several exist, ask the user which owner to use.
+3. If none exists, call `mcp__forgejo__get_my_user_info` to recommend the authenticated user as owner, then ask for owner and visibility. Recommend **private** unless the existing repo's public status is clear. Include the planned `mcp__forgejo__create_repo` call in the final confirmation; create an empty repo with `auto_init: false` only after approval.
+4. Plan a Git remote using the SSH URL returned by Forgejo. Use `origin` when it does not exist, or `forge` when `origin` exists and `forge` does not. If both names already point elsewhere, ask which new name to use or whether to update `forge`. Add or update it only after the final confirmation.
+
+The issue tracker choice is complete when it names one existing or approved-to-create Forgejo repository. If the user asks to compare trackers, offer:
+
+- **Forgejo**: issues live in the repo's Forgejo Issues on `forgejo.boushley.cc` (uses the configured Forgejo MCP server)
 - **GitHub**: issues live in the repo's GitHub Issues (uses the `gh` CLI)
 - **GitLab**: issues live in the repo's GitLab Issues (uses the [`glab`](https://gitlab.com/gitlab-org/cli) CLI)
-- **Local markdown**: issues live as files under `.scratch/<feature>/` in this repo (good for solo projects or repos without a remote)
+- **Local markdown**: issues live as files under `docs/tracker/<feature>/` in this repo (good for solo projects or repos without a remote)
 - **Other** (Jira, Linear, etc.): ask the user to describe the workflow in one paragraph; the skill will record it as freeform prose
 
-Record the choice in `docs/agents/issue-tracker.md`. The GitHub and GitLab templates carry a "PRs as a request surface" flag, defaulted **off**. Leave it off and don't raise it: a user who wants external PRs in the triage queue can flip the flag in the file later.
+If the user declines Forgejo, continue with their preferred alternative from this list.
+
+Record the choice in `docs/agents/issue-tracker.md`. The Forgejo, GitHub, and GitLab templates carry a "PRs as a request surface" flag, defaulted **off**. Leave it off and don't raise it: a user who wants external PRs in the triage queue can flip the flag in the file later.
 
 **Section B: Triage label vocabulary.** Skip this section entirely if the `triage` skill isn't installed (exploration told you), since an uninstalled skill needs no labels.
 
@@ -60,10 +79,11 @@ The defaults are the five canonical roles, each label string equal to its name: 
 
 Offer **multi-context** (a root `CONTEXT-MAP.md` pointing to per-context `CONTEXT.md` files) only when exploration found monorepo signals. Then confirm which layout they want.
 
-### 3. Confirm and edit
+### 3. Confirm the plan
 
 Show the user a draft of:
 
+- Any Forgejo repository creation and Git remote addition
 - The `## Agent skills` block to add to whichever of `CLAUDE.md` / `AGENTS.md` is being edited (see step 4 for selection rules)
 - The contents of `docs/agents/issue-tracker.md`, `docs/agents/domain.md`, and `docs/agents/triage-labels.md` (the last only when `triage` is installed)
 
@@ -101,8 +121,11 @@ The block:
 
 Include the `### Triage labels` sub-block, and write `docs/agents/triage-labels.md`, only when `triage` is installed and Section B ran. When it isn't, both are omitted.
 
+For an approved Forgejo repository creation, call `mcp__forgejo__create_repo` before adding the Git remote. Add it with `git remote add <name> <ssh-url>` only when the MCP call returns the expected owner and repository. If the user approved updating an occupied `forge` remote, use `git remote set-url forge <ssh-url>`. Do not push; repository setup and code publication are separate decisions.
+
 Then write the docs files using the seed templates in this skill folder as a starting point:
 
+- [issue-tracker-forgejo.md](./issue-tracker-forgejo.md): Forgejo issue tracker; replace `<owner>` and `<repo>` with the selected repository
 - [issue-tracker-github.md](./issue-tracker-github.md): GitHub issue tracker
 - [issue-tracker-gitlab.md](./issue-tracker-gitlab.md): GitLab issue tracker
 - [issue-tracker-local.md](./issue-tracker-local.md): local-markdown issue tracker
@@ -113,4 +136,4 @@ For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch us
 
 ### 5. Done
 
-Tell the user the setup is complete and which engineering skills will now read from these files. Mention they can edit `docs/agents/*.md` directly later; re-running this skill is only necessary if they want to switch issue trackers or restart from scratch.
+Tell the user the setup is complete and which of my skills will now read from these files. Mention they can edit `docs/agents/*.md` directly later; re-running this skill is only necessary if they want to switch issue trackers or restart from scratch.
