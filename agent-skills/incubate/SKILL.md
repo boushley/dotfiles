@@ -1,27 +1,36 @@
 ---
 name: incubate
-description: Incubate a rough project or product idea into a defensible next decision. Use to frame an unclear idea, untangle several ideas, compare existing solutions, challenge scope, shape an independent bet, or resume discovery. Do not use for implementation or technical planning after a bet is chosen.
+description: Incubate a rough project idea into a defensible next commitment. Use to clarify motives, untangle ideas, compare existing approaches, challenge scope, shape an independent bet, or resume discovery for personal, creative, technical, or commercial work. Do not use to execute a bet or plan its implementation after it passes the handoff gate.
 ---
 
 # Incubate
 
-Determine what an idea should become, including whether it should become software at all. The useful outcome is a defensible choice to adopt, configure, compose, experiment, build, keep investigating, defer, or stop.
+Determine why an idea is worth attention, what it should become, and whether it should become software at all. The useful outcome is a defensible choice to pursue, practice, adopt, configure, compose, experiment, build, keep investigating, defer, or stop.
 
-Act as a critical thinking partner. Separate four things whenever they blur together:
+The result may matter, the experience of doing the project may matter, or both may matter. Match the analysis to the user's reasons:
 
-- **Outcome:** the change the user wants in the world.
-- **Problem:** observed friction or unmet need.
+- Examine uniqueness, external adoption, demand, or profit when success depends on them.
+- When learning, making, enjoyment, expression, or control is part of the return, treat existing work as an alternative, reference, component, or benchmark rather than an automatic reason to stop.
+- Apply the constraints the user cares about to every project. Intrinsic interest can justify effort; it does not make time, cost, safety, or maintenance irrelevant.
+
+Act as a critical thinking partner. Separate five things whenever they blur together:
+
+- **Motive:** why the effort would be worthwhile, whether for an external result or the experience itself.
+- **Outcome:** a result, change, artifact, or experience the user hopes to produce.
+- **Problem:** observed friction or unmet need, when one exists.
 - **Idea:** a possible response, not yet a commitment.
 - **Assumption:** a belief that could change the decision if false.
 
-One domain may hold several **opportunities**. Each opportunity may produce one or more **bets**, meaning bounded proposals worth evaluating independently. Shared users or data do not make those bets one product.
+Record curiosity, craft, and enjoyment as motives in their own right. Do not invent a problem to make a personal project sound useful.
+
+A **thread** is a coherent strand of interest or desired change that can be pursued independently. A **bet** is a bounded commitment of time, attention, or money under uncertainty. Its return may be utility, learning, craft, enjoyment, expression, contribution, distinctiveness, profit, or the experience itself. One domain may hold several threads, and each thread may produce several bets. Shared tools or information do not make those bets one project.
 
 ## Load the branch you need
 
 - Read [references/state.md](references/state.md) before creating or changing discovery files. It defines locations, canonical records, inquiry states, reopening, and save checks.
 - Read [references/workflow.md](references/workflow.md) when mapping a new domain, researching, reviewing scope, shaping a bet, or preparing a handoff. Use the completion criterion for the current mode.
 - Read only the relevant section of [references/templates.md](references/templates.md) when creating an artifact.
-- Use [references/photo-example.md](references/photo-example.md) only when an example would clarify how to split a domain into opportunities and bets. Its contents are illustrative, not evidence or user decisions.
+- Use [references/photo-example.md](references/photo-example.md) only when an example would clarify how to split a domain into threads and bets. Its contents are illustrative, not evidence or user decisions.
 - Read [references/behavioral-checks.md](references/behavioral-checks.md) only when evaluating or changing this skill.
 
 ## Start or resume
@@ -42,7 +51,7 @@ A request for status or a checkpoint is read-only. Report what the files support
 
 Start with a brief orientation:
 
-- the current domain interpretation and active opportunity or bet;
+- the current domain interpretation and active thread or bet;
 - settled decisions, live assumptions, and changes since the last checkpoint;
 - the next useful inquiry and the decision it affects;
 - one material scope concern, when there is one.
@@ -51,16 +60,16 @@ Recommend a starting inquiry. Honor a user-selected inquiry unless an unmet depe
 
 Choose the mode that fits the question:
 
-- **Unpack** outcomes, problems, ideas, and assumptions.
-- **Explore** alternatives or an opportunity's boundaries.
-- **Research** existing solutions or a decision-critical fact.
-- **Compare** bets, product boundaries, or adoption paths.
+- **Unpack** motives, outcomes, problems, ideas, and assumptions.
+- **Explore** alternatives or a thread's boundaries.
+- **Research** existing approaches or a decision-critical fact.
+- **Compare** bets, project boundaries, or ways forward.
 - **Shape** one bet into a coherent candidate.
 - **Assess** confidence, blockers, and readiness without advancing discovery.
 
-For an interview, ask one short round of independent, decision-changing questions, usually two to four. For each question, state the tentative recommendation, the tradeoff, and the decision it affects. Ask about goals, preferences, experience, constraints, and tradeoffs. Investigate discoverable facts directly. Stop after the question round and wait for the user's answers.
+For an interview, ask one short round of independent, decision-changing questions, usually two to four. For each question, state the tentative recommendation, the tradeoff, and the decision it affects. Ask about motives, goals, sources of energy, preferences, experience, constraints, and tradeoffs. Investigate discoverable facts directly. Stop after the question round and wait for the user's answers.
 
-For research, investigate the bounded question now. Check existing solutions before proposing substantial custom work. Record sources, access dates, and whether each conclusion is documented, tested, inferred, or unknown. Count learning, enjoyment, control, switching cost, and maintenance when they matter. If evidence cannot be obtained, leave the inquiry open.
+For research, investigate the bounded question now. State how existing approaches could change the decision before researching them. If utility is the goal, a good existing option may end custom work. If making or learning is part of the goal, existing work may instead inform the project. Research novelty, demand, or profit when the user's success criteria require it. Record sources, access dates, and whether each conclusion is documented, tested, inferred, or unknown. If evidence cannot be obtained, leave the inquiry open.
 
 Complete one coherent inquiry, or a few tightly related factual checks, per session. Do not drain the whole frontier automatically.
 
@@ -78,7 +87,7 @@ Make scope proposals concrete:
 
 Label each proposal as proposed. The user accepts changes to boundaries, preferences, priorities, and selected bets. Keep rejected proposals with their rationale until new evidence makes them worth reopening.
 
-Protect the smallest end-to-end experience that delivers the desired outcome. Small scope is useful only when it still works as an experience.
+Protect the smallest coherent commitment that honors the motive and intended outcome. Small scope is useful only when it preserves the reason to do the project.
 
 ## Persist a checkpoint
 
@@ -91,13 +100,13 @@ End with a compact checkpoint that states:
 - the recommended next inquiry and any materially different ready alternative;
 - files changed, incomplete saves, and unresolved contradictions.
 
-Use qualified counts such as "two known product questions block this bet." Do not invent completion percentages.
+Use qualified counts such as "two known project questions block this bet." Do not invent completion percentages.
 
 ## Hand off a selected bet
 
 Read the handoff gate in [references/workflow.md](references/workflow.md). Readiness applies to one bet, even if the rest of the domain remains unexplored. The user selects the bet.
 
-For a selected bet that passes the gate, write `bets/<bet-slug>.md` as a self-contained handoff. Recommend the fitting next activity: adoption or configuration, a bounded experiment, technical planning, or broader decision mapping.
+For a selected bet that passes the gate, write `bets/<bet-slug>.md` as a self-contained handoff. Recommend the fitting next activity: a practice or learning plan, adoption or configuration, a bounded experiment, technical planning, commercial validation, or broader decision mapping.
 
 Preserve the handoff before switching to implementation. Creating a discovery plan does not authorize its execution.
 

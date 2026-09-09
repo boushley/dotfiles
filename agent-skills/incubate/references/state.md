@@ -36,23 +36,23 @@ In a project collection, an existing top-level note remains the human-facing gat
 
 ### `DOMAIN.md`
 
-The durable, solution-independent frame: people, situations, desired outcomes, observed problems, constraints, vocabulary, and live assumptions. It is the canonical home for domain-level facts and user preferences.
+The durable frame: motives, people and settings, hoped-for outcomes or experiences, observed problems when present, constraints, vocabulary, and live assumptions. It is the canonical home for domain-level facts and user preferences.
 
 ### `MAP.md`
 
-The resumable index: active focus, opportunities, candidate bets, inquiry states and dependencies, parking, and short links to decisions or evidence. The map may carry a one-line gist but does not duplicate detail from another canonical record.
+The resumable index: active focus, threads, candidate bets, inquiry states and dependencies, parking, and short links to decisions or evidence. The map may carry a one-line gist but does not duplicate detail from another canonical record.
 
-### `opportunities/<opportunity-slug>.md`
+### `threads/<thread-slug>.md`
 
-Create when an opportunity has enough distinct evidence, problems, or bets that keeping it in `DOMAIN.md` would obscure the domain. It owns the opportunity's boundaries and evidence synthesis.
+Create when a thread has enough distinct motives, evidence, questions, or bets that keeping it in `DOMAIN.md` would obscure the domain. It owns the thread's boundaries and evidence synthesis.
 
 ### `bets/<bet-slug>.md`
 
-Create when a bet has substantive shape or needs an independent decision. It owns that bet's causal claim, accepted scope, non-goals, appetite, alternatives, evidence synthesis, dependencies, and open questions. A handoff expands this same file; it does not create a competing version.
+Create when a bet has substantive shape or needs an independent decision. It owns that bet's motive, intended result or experience, rationale, success conditions, accepted scope, non-goals, appetite, alternatives, evidence synthesis, dependencies, and open questions. A handoff expands this same file; it does not create a competing version.
 
 ### `evidence/<inquiry-slug>.md`
 
-Create for research or experiments with claims, sources, method, or results worth preserving. It owns those findings. Small user decisions may instead live in the affected domain, opportunity, or bet document.
+Create for research or experiments with claims, sources, method, or results worth preserving. It owns those findings. Small user decisions may instead live in the affected domain, thread, or bet document.
 
 ## Statements and authority
 
@@ -113,7 +113,7 @@ A tracker may mirror an inquiry for collaboration, but discovery files remain ca
 For each completed inquiry:
 
 1. Save research or experiment evidence.
-2. Update the affected domain, opportunity, or bet document with the conclusion and its authority.
+2. Update the affected domain, thread, or bet document with the conclusion and its authority.
 3. Update dependent inquiries and candidate boundaries.
 4. Update `MAP.md` last with status, gist, and links.
 

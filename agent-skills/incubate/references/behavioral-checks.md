@@ -6,7 +6,7 @@ Use these scenarios to evaluate changes to the skill. Judge the resulting behavi
 
 **Prompt:** "I want a personal finance app that imports everything, tells me what to do, handles taxes, and teaches my kids. Incubate it."
 
-**Expected:** Separates outcomes, problems, ideas, and assumptions; proposes more than one opportunity; initializes only a small domain and map; asks a short independent question round; does not create an implementation backlog.
+**Expected:** Separates motives, outcomes, problems, ideas, and assumptions; proposes more than one thread; initializes only a small domain and map; asks a short independent question round; does not create an implementation backlog.
 
 ## Existing state
 
@@ -38,11 +38,29 @@ Use these scenarios to evaluate changes to the skill. Judge the resulting behavi
 
 **Expected:** Reads `Garden Planner.md` as source material without reading unrelated project contents. Keeps the note in place, creates `Garden Planner/` for `DOMAIN.md` and `MAP.md`, and links the note and map using the workspace's link style.
 
-## Existing solution check
+## Existing approach with a practical motive
 
 **Prompt:** "Shape a custom team bookmark manager."
 
-**Expected:** Makes the existing-solution check proportionate to the decision before recommending substantial custom work. Considers adoption and maintenance, not feature parity alone.
+**Expected:** Clarifies what would make a custom tool worthwhile, then checks existing approaches before recommending substantial custom work. If practical utility is the only motive and an existing tool fits, it may recommend adoption instead. It considers switching and maintenance rather than feature parity alone.
+
+## Intrinsic making motive
+
+**Prompt:** "Bookmark managers already exist, but I want to build one because local-first sync fascinates me."
+
+**Expected:** Records learning and making as motives without inventing a market problem. It uses existing tools and implementations as references or benchmarks, shapes a bounded learning bet, and does not require demand or novelty unless the user adds those success criteria.
+
+## Interest-led non-product
+
+**Prompt:** "I want to spend a season learning how medieval pigments were made. I have no business goal; it just fascinates me."
+
+**Expected:** Treats fascination and learning as sufficient motives for incubation. It clarifies the desired practice or artifact, appetite, material cost, and safety constraints without requiring a customer, market, software component, or practical problem.
+
+## Distinctiveness or profit motive
+
+**Prompt:** "I want to sell a team bookmark manager, and it is only worth pursuing if it offers something meaningfully different."
+
+**Expected:** Treats distinctiveness and profit as required success criteria. It investigates competing approaches, meaningful differentiation, plausible demand, willingness to pay, distribution, and costs at a depth proportionate to the proposed commitment.
 
 ## New adjacent idea
 
@@ -50,11 +68,11 @@ Use these scenarios to evaluate changes to the skill. Judge the resulting behavi
 
 **Prompt:** "It should also track workouts because both use health data."
 
-**Expected:** Runs a scope review, tests whether the outcomes are independent, and records a pending split or merge proposal. It does not silently add workout tracking to accepted scope.
+**Expected:** Runs a scope review, tests whether the motives and outcomes are independent, and records a pending split or merge proposal. It does not silently add workout tracking to accepted scope.
 
 ## Rejected proposal
 
-**Setup:** The user rejected splitting a creator tool into publishing and analytics because the combined workflow is the value.
+**Setup:** The user rejected splitting a creator tool into publishing and analytics because the combined experience is the reason to do the project.
 
 **Prompt:** "Continue shaping."
 
@@ -62,13 +80,13 @@ Use these scenarios to evaluate changes to the skill. Judge the resulting behavi
 
 ## Premature handoff
 
-**Prompt:** "Incubate handoff" for a bet with no user, causal claim, alternative check, or accepted scope.
+**Prompt:** "Incubate handoff" for a bet with no clear motive, success conditions, alternative check, or accepted scope.
 
-**Expected:** Fails the gate with specific product questions, recommends the next inquiry, and does not disguise assumptions as a plan.
+**Expected:** Fails the gate with specific project questions, recommends the next inquiry, and does not disguise assumptions as a plan. It does not demand an audience or market case unless either matters to the bet.
 
 ## Ready bet amid an open domain
 
-**Setup:** One selected bet passes the gate while two other opportunities remain unexplored.
+**Setup:** One selected bet passes the gate while two other threads remain unexplored.
 
 **Prompt:** "Hand off the selected bet."
 

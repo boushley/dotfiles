@@ -9,17 +9,21 @@ Use only the template for the artifact being created. Remove prompts and empty s
 
 ## Frame
 
-<A provisional, solution-independent account of the domain and why it matters.>
+<A provisional account of the domain and why it matters.>
 
-## People and situations
+## Motives
 
-- <Who encounters what situation. Mark inference when the user has not confirmed it.>
+- <Why the effort could be worthwhile. Include intrinsic and external reasons without forcing one into the other.>
 
-## Desired outcomes
+## Intended outcomes or experiences
 
-- <Change the user wants in the world.>
+- <Result, artifact, change, learning, or experience the user hopes to produce.>
 
-## Observed problems
+## People and settings
+
+- <Who is involved and in what setting, when relevant. Mark inference when the user has not confirmed it.>
+
+## Observed problems, when present
 
 - <Concrete friction and its evidence.>
 
@@ -29,7 +33,7 @@ Use only the template for the artifact being created. Remove prompts and empty s
 
 ## Assumptions
 
-- <Belief whose failure could change an opportunity or bet.>
+- <Belief whose failure could change a thread or bet.>
 ```
 
 ## `MAP.md`
@@ -41,16 +45,16 @@ Use only the template for the artifact being created. Remove prompts and empty s
 
 ## Active focus
 
-- **Opportunity:** <name and link when available>
+- **Thread:** <name and link when available>
 - **Bet:** <name and link, or "none selected">
 - **Inquiry:** <name and status>
 - **Why now:** <decision this inquiry affects>
 
-## Opportunities
+## Threads
 
-### <Opportunity name>
+### <Thread name>
 
-<One-line outcome and problem cluster.>
+<One-line motive, intended result or experience, and any relevant problem.>
 
 - **State:** provisional | active | deferred | rejected
 - **Evidence:** <links>
@@ -78,19 +82,23 @@ Use only the template for the artifact being created. Remove prompts and empty s
 
 ## Parking
 
-- <Idea or opportunity and why it is not active.>
+- <Idea or thread and why it is not active.>
 ```
 
-## Opportunity record
+## Thread record
 
 ```markdown
-# <Opportunity>
+# <Thread>
 
-## Desired outcome
+## Motive
 
-<Solution-independent outcome.>
+<Why this thread is worth attention.>
 
-## Problem cluster
+## Intended outcome or experience
+
+<Result, change, artifact, learning, or experience sought.>
+
+## Problems, when present
 
 - <Observed problem and evidence link.>
 
@@ -98,7 +106,7 @@ Use only the template for the artifact being created. Remove prompts and empty s
 
 - **Includes:** <accepted boundary or labeled proposal>
 - **Excludes:** <accepted boundary or labeled proposal>
-- **Adjacent opportunities:** <links and relationship>
+- **Adjacent threads:** <links and relationship>
 
 ## Evidence and assumptions
 
@@ -106,7 +114,7 @@ Use only the template for the artifact being created. Remove prompts and empty s
 
 ## Candidate bets
 
-- <Bet and the different causal theory it tests.>
+- <Bet and how its commitment differs from the other candidates.>
 ```
 
 ## Evidence record
@@ -139,20 +147,36 @@ Use this structure once a bet has substantive content. Before handoff, omit sect
 ```markdown
 # <Bet>
 
-- **State:** candidate | selected | deferred | rejected | ready for planning
-- **Opportunity:** <link>
+- **State:** candidate | selected | deferred | rejected | ready for handoff
+- **Thread:** <link>
 
-## Problem and outcome
+## Why this is worth doing
 
-<Who faces what problem, and what should change.>
+<The motive. State whether the return lies in the result, the experience of doing it, or both.>
 
-## Causal claim
+## Intended result or experience
 
-<Why this response should improve the outcome.>
+<What this bet should produce for the user or anyone else involved.>
 
-## Rough experience
+## Problem, when present
 
-<The smallest end-to-end path that delivers or tests the outcome.>
+<The concrete friction this bet addresses and its evidence.>
+
+## Rationale
+
+<Why this commitment fits the motive and intended result.>
+
+## Smallest coherent commitment
+
+<The smallest version that preserves the reason to do the project.>
+
+## Success and review conditions
+
+- <What would count as worthwhile progress, success, a reason to reconsider, or a reason to stop.>
+
+## Participants or beneficiaries
+
+- <Who takes part or benefits, when anyone beyond the user matters.>
 
 ## Accepted scope
 
@@ -164,11 +188,15 @@ Use this structure once a bet has substantive content. Before handoff, omit sect
 
 ## Alternatives considered
 
-- <Adopt, configure, compose, service, experiment, or build alternative; evidence and tradeoff.>
+- <Alternative and its role as substitute, reference, component, benchmark, or competitor; evidence and tradeoff.>
+
+## Viability tests, when relevant
+
+- <Evidence about distinctiveness, external adoption, demand, willingness to pay, profit, or distribution when success depends on it.>
 
 ## Appetite and constraints
 
-- <Time, cost, maintenance, control, learning, privacy, or operational constraint.>
+- <Time, attention, cost, safety, maintenance, control, learning, privacy, or operational constraint.>
 
 ## Evidence and risks
 
@@ -178,9 +206,9 @@ Use this structure once a bet has substantive content. Before handoff, omit sect
 
 - <External decision, system, person, or unresolved prerequisite.>
 
-## Open implementation questions
+## Open next-stage questions
 
-- <A question that changes how to implement, not what the product is.>
+- <A question for the recommended next activity that does not hide an unresolved purpose or boundary decision.>
 
 ## Decision history
 
