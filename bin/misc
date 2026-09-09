@@ -1,0 +1,166 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+## This defines a set of helper scripts to make defining a tmux session layout easy / clear. For the actual layout
+## defined by this script head to the bottom
+
+layout_session=
+layout_session_created=0
+layout_setup_complete=0
+layout_first_window=
+layout_current_window=
+layout_current_layout=
+layout_current_panes=0
+layout_current_first_pane=
+layout_current_last_pane=
+layout_current_focus_pane=
+
+layout_fail() {
+  printf '%s: %s\n' "${0##*/}" "$*" >&2
+  exit 1
+}
+
+layout_cleanup() {
+  local status=$?
+
+  trap - EXIT
+  if (( status != 0 && layout_session_created && ! layout_setup_complete )); then
+    tmux kill-session -t "=$layout_session" 2>/dev/null || true
+  fi
+  exit "$status"
+}
+trap layout_cleanup EXIT
+
+tmux_finish_window() {
+  [[ -n $layout_current_window ]] || return 0
+  (( layout_current_panes > 0 )) || layout_fail \
+    "window '$layout_current_window' has no panes"
+
+  tmux select-layout -t "$layout_current_first_pane" "$layout_current_layout" >/dev/null
+  tmux select-pane -t "${layout_current_focus_pane:-$layout_current_first_pane}"
+}
+
+tmux_open() {
+  local start_window=${1:-}
+
+  tmux_finish_window
+  if [[ -n $start_window ]]; then
+    tmux select-window -t "${layout_session}:${start_window}"
+  fi
+  layout_setup_complete=1
+
+  if [[ -n ${TMUX:-} ]]; then
+    tmux switch-client -t "=$layout_session"
+  else
+    tmux attach-session -t "=$layout_session"
+  fi
+}
+
+tmux_session() {
+  (( $# == 1 )) || layout_fail "usage: tmux_session NAME"
+  command -v tmux >/dev/null || layout_fail "tmux is not installed"
+
+  layout_session=$1
+  if tmux has-session -t "=$layout_session" 2>/dev/null; then
+    tmux_open
+    exit $?
+  fi
+}
+
+# Layouts: even-horizontal, even-vertical, main-horizontal,
+#          main-horizontal-mirrored, main-vertical,
+#          main-vertical-mirrored, tiled
+tmux_window() {
+  (( $# == 2 )) || layout_fail "usage: tmux_window NAME LAYOUT"
+
+  case $2 in
+    even-horizontal|even-vertical|main-horizontal|main-horizontal-mirrored|\
+      main-vertical|main-vertical-mirrored|tiled) ;;
+    *) layout_fail "unknown tmux layout '$2'" ;;
+  esac
+
+  tmux_finish_window
+  layout_current_window=$1
+  layout_current_layout=$2
+  layout_current_panes=0
+  layout_current_first_pane=
+  layout_current_last_pane=
+  layout_current_focus_pane=
+}
+
+# Usage: tmux_pane [--focus] DIRECTORY [-- COMMAND...]
+# The first pane in each window gets focus unless --focus selects another one.
+tmux_pane() {
+  local focus=0
+  local directory pane_id command_text
+
+  if [[ ${1:-} == --focus ]]; then
+    focus=1
+    shift
+  fi
+
+  (( $# >= 1 )) || layout_fail \
+    "usage: tmux_pane [--focus] DIRECTORY [-- COMMAND...]"
+  directory=$1
+  shift
+  [[ -d $directory ]] || layout_fail "directory does not exist: $directory"
+
+  if (( $# > 0 )); then
+    [[ $1 == -- ]] || layout_fail "put -- before the pane command"
+    shift
+    (( $# > 0 )) || layout_fail "missing pane command after --"
+    printf -v command_text '%q ' "$@"
+    command_text=${command_text% }
+  else
+    command_text=
+  fi
+
+  if (( layout_current_panes == 0 )); then
+    if (( ! layout_session_created )); then
+      pane_id=$(tmux new-session -d -P -F '#{pane_id}' \
+        -s "$layout_session" -n "$layout_current_window" -c "$directory")
+      layout_session_created=1
+      layout_first_window=$layout_current_window
+    else
+      pane_id=$(tmux new-window -d -P -F '#{pane_id}' \
+        -t "${layout_session}:" -n "$layout_current_window" -c "$directory")
+    fi
+    layout_current_first_pane=$pane_id
+  else
+    pane_id=$(tmux split-window -d -P -F '#{pane_id}' \
+      -t "$layout_current_last_pane" -c "$directory")
+  fi
+
+  layout_current_last_pane=$pane_id
+  (( layout_current_panes += 1 ))
+
+  if (( layout_current_panes > 1 )); then
+    tmux select-layout -t "$layout_current_first_pane" "$layout_current_layout" >/dev/null
+  fi
+
+  if (( focus )); then
+    layout_current_focus_pane=$pane_id
+  fi
+
+  if [[ -n $command_text ]]; then
+    tmux send-keys -t "$pane_id" -l "$command_text"
+    tmux send-keys -t "$pane_id" Enter
+  fi
+}
+
+## This is the start of the actual layout code
+
+tmux_session misc
+
+tmux_window misc tiled
+tmux_pane "$HOME/projects"
+tmux_pane "$HOME/dotfiles"
+tmux_pane --focus "$HOME/projects" -- codex
+tmux_pane "$HOME/Downloads"
+
+tmux_window scratch tiled
+tmux_pane "$HOME/projects"
+tmux_pane "$HOME/projects"
+
+tmux_open "$layout_first_window"
