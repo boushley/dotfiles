@@ -1,0 +1,93 @@
+{
+  "name": "Aaron's app style foundations",
+  "version": 1,
+  "color": {
+    "canvas": "#081310",
+    "surface": "#0E1B17",
+    "surfaceRaised": "#15241E",
+    "surfaceHover": "#1A2D25",
+    "surfaceSelected": "#173426",
+    "surfaceDisabled": "#111E19",
+    "scrim": "rgba(2, 8, 6, 0.72)",
+    "divider": "#2B4139",
+    "borderStrong": "#557368",
+    "text": "#E7F1EC",
+    "textMuted": "#93A89F",
+    "textDisabled": "#687A72",
+    "icon": "#93A89F",
+    "iconStrong": "#E7F1EC",
+    "iconDisabled": "#687A72",
+    "actionFill": "#4E9C70",
+    "actionHover": "#63AE83",
+    "actionPressed": "#438C63",
+    "actionSubtle": "#173527",
+    "onAction": "#06110A",
+    "focusInner": "#04100B",
+    "focusOuter": "#80C89B",
+    "selectionBackground": "#285C42",
+    "selectionText": "#E7F1EC",
+    "selectionIndicator": "#63AE83",
+    "successContent": "#76C985",
+    "successSurface": "#142D1C",
+    "successBorder": "#4F9B61",
+    "warningContent": "#DDB963",
+    "warningSurface": "#302812",
+    "warningBorder": "#9B7F3C",
+    "dangerContent": "#EA7B7E",
+    "dangerSurface": "#35191C",
+    "dangerBorder": "#B2555B",
+    "infoContent": "#72A9DD",
+    "infoSurface": "#14273A",
+    "infoBorder": "#4F83B4"
+  },
+  "contrastMore": {
+    "textMuted": "#B2C5BC",
+    "textDisabled": "#93A89F",
+    "divider": "#557368",
+    "borderStrong": "#749586",
+    "focusOuter": "#A3E3BF"
+  },
+  "space": {
+    "1": "4px",
+    "2": "8px",
+    "3": "12px",
+    "4": "16px",
+    "5": "24px",
+    "6": "32px",
+    "7": "48px"
+  },
+  "border": {
+    "default": "1px",
+    "active": "2px",
+    "focus": "2px"
+  },
+  "radius": {
+    "structure": "0px",
+    "control": "4px",
+    "controlGroup": "5px",
+    "round": "999px"
+  },
+  "size": {
+    "targetMinimum": "24px",
+    "controlDense": "34px",
+    "controlTouch": "44px",
+    "icon": "16px",
+    "iconButton": "34px",
+    "tableHeader": "32px",
+    "rowCompact": "40px",
+    "rowStandard": "52px"
+  },
+  "layout": {
+    "sidebar": "168px",
+    "utilityBar": "46px",
+    "contentMax": "1180px",
+    "gutter": "24px",
+    "gutterMobile": "16px",
+    "cardPadding": "16px",
+    "cardGap": "12px",
+    "sectionGap": "24px"
+  },
+  "shadow": {
+    "overlay": "0 12px 28px rgba(0, 0, 0, 0.60)"
+  }
+}
