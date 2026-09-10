@@ -2,3 +2,14 @@
 .neobundle
 vim/vim/undo/*
 vim/vim/bundle
+
+# Omarchy creates backups alongside refreshed configuration files.
+omarchy/**/*.bak
+omarchy/**/*.bak.*
+
+# Shipped examples and completed first-run invitation hooks are not personal config.
+omarchy/omarchy/hooks/**/*.sample
+omarchy/omarchy/themed/*.sample
+omarchy/omarchy/hooks/post-update.d/install-voxtype.hook
+omarchy/omarchy/hooks/post-update.d/setup-agent.hook
+omarchy/omarchy/hooks/post-update.d/setup-fingerprint.hook
