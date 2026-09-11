@@ -13,3 +13,8 @@ omarchy/omarchy/themed/*.sample
 omarchy/omarchy/hooks/post-update.d/install-voxtype.hook
 omarchy/omarchy/hooks/post-update.d/setup-agent.hook
 omarchy/omarchy/hooks/post-update.d/setup-fingerprint.hook
+
+# Keep personal homelab skills and infrastructure details local.
+/agent-skills/homelab-setup/
+/agent-skills/homelab-debugging/
+/agent-skills/homelab-reference.md
